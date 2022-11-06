@@ -7,14 +7,12 @@ package sawb;
 
 /**
  *
- * @author Particular
+ * @author Grupo 4
  */
 public class SAWB {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
+        // inicia el programa
         Ventanas.Inicio.main(args);
     }
     
