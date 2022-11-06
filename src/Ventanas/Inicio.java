@@ -13,15 +13,16 @@ import javax.swing.JOptionPane;
  * @author Grupo 4
  */
 public class Inicio extends javax.swing.JFrame {
-    
+    /* Variables locales */
     boolean visible;
     /**
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();
-        visible = true;
-        
+        /* Llamamos a la funcion que se enecarga de configurar la ventana*/
+        configurar();
+        /* login del usuario*/
         logger();
     }
 
@@ -144,19 +145,19 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(jLabel2)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(LoginError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(ver, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(rSButtonMetro4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(LoginError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ver, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(rSButtonMetro4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -309,11 +310,11 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_LogingWindowDeactivated
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        deseasalir();
+        deseaSalir();
     }//GEN-LAST:event_formWindowClosing
 
     private void rSButtonMetro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro5ActionPerformed
-        deseasalir();
+        deseaSalir();
     }//GEN-LAST:event_rSButtonMetro5ActionPerformed
 
     private void jPanel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseExited
@@ -415,8 +416,13 @@ public class Inicio extends javax.swing.JFrame {
     private rojerusan.RSButtonMetro rSButtonMetro5;
     private rojerusan.RSButtonMetro ver;
     // End of variables declaration//GEN-END:variables
+    /* Metodo que modifica la ventana para actual */
+    private void configurar() {
+        visible = true;
+    }
     
-    private void deseasalir() {
+    /* Metodo que pregunta si se desea salir*/
+    private void deseaSalir() {
         int r = JOptionPane.showConfirmDialog(null, "Seguro que desea salir","Atencion",JOptionPane.OK_CANCEL_OPTION);
         if ((r == JOptionPane.YES_OPTION)) {
             System.exit(0);
@@ -430,9 +436,12 @@ public class Inicio extends javax.swing.JFrame {
         Loging.setResizable(false);
         Loging.setAlwaysOnTop(true);
         LoginError.setVisible(false);
-        // abre la ventana
+        
+        // hace visible la ventana loggin
         Loging.setVisible(true);
     }
+
+    
 
 
 }
