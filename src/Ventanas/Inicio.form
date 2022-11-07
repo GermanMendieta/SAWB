@@ -441,7 +441,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="80" width="370" height="450"/>
+              <AbsoluteConstraints x="20" y="90" width="370" height="450"/>
             </Constraint>
           </Constraints>
 
@@ -465,17 +465,14 @@
                           <Component id="jLabel9" alignment="1" min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="rSButtonMetro3" max="32767" attributes="0"/>
-                          <Component id="rSButtonMetro2" max="32767" attributes="0"/>
-                          <Component id="rSButtonMetro1" max="32767" attributes="0"/>
-                          <Component id="rSButtonMetro6" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="rSButtonMetro5" min="-2" pref="177" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="73" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="rSButtonMetro3" alignment="0" pref="240" max="32767" attributes="0"/>
+                          <Component id="rSButtonMetro2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="rSButtonMetro5" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
+                          <Component id="rSButtonMetro1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="rSButtonMetro6" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="22" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -523,6 +520,9 @@
                 <Property name="horizontalTextPosition" type="int" value="2"/>
                 <Property name="iconTextGap" type="int" value="10"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonMetro2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="rojerusan.RSButtonMetro" name="rSButtonMetro1">
               <Properties>
@@ -548,6 +548,9 @@
                 <Property name="horizontalTextPosition" type="int" value="2"/>
                 <Property name="iconTextGap" type="int" value="10"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonMetro3ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="rojerusan.RSButtonMetro" name="rSButtonMetro5">
               <Properties>
@@ -631,7 +634,7 @@
               <Font name="Microsoft YaHei UI" size="48" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="0" red="0" type="rgb"/>
+              <Color blue="33" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Web Banking Smart Assistant"/>
@@ -639,7 +642,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="0" width="840" height="-1"/>
+              <AbsoluteConstraints x="20" y="10" width="840" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -652,7 +655,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="80" width="1040" height="450"/>
+              <AbsoluteConstraints x="20" y="90" width="1040" height="450"/>
             </Constraint>
           </Constraints>
         </Component>

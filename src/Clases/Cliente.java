@@ -12,7 +12,7 @@ public class Cliente {
     PinTransaccional pinTrans;
     
     /* Constructor de la clase Cliente*/
-    public Cliente(int id, String nombre){
+    public Cliente(int id, String nombre, int pinC){
         if( validarUsuario(nombre, id))
             this.id = id;
             this.nombre = nombre;

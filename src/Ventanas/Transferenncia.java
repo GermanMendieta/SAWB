@@ -13,14 +13,14 @@ import javax.swing.JOptionPane;
  *
  * @author Grupo 4
  */
-public class Deposito extends javax.swing.JDialog {
+public class Transferenncia extends javax.swing.JDialog {
 
     /**
      * Creates new form Transferencia
      */
     Cliente User;
 
-    public Deposito(Cliente User) {
+    public Transferenncia(Cliente User) {
         /*
             Configuramos la ventana  
          */
@@ -45,7 +45,7 @@ public class Deposito extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        Depositar = new rojerusan.RSButtonMetro();
+        Transferir = new rojerusan.RSButtonMetro();
         jPanel2 = new javax.swing.JPanel();
         Cuenta = new rojerusan.RSMetroTextPlaceHolder();
         Monto = new rojerusan.RSMetroTextPlaceHolder();
@@ -53,69 +53,59 @@ public class Deposito extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        rSButtonMetro5 = new rojerusan.RSButtonMetro();
+        cancelar = new rojerusan.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel1.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(102, 102, 102));
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Deposito en Cuenta");
+        jLabel1.setText("Transferencia Bancaria");
         jLabel1.setOpaque(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 560, 90));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 560, 90));
 
-        Depositar.setText("Depositar en cuenta");
-        Depositar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Depositar.addActionListener(new java.awt.event.ActionListener() {
+        Transferir.setText("Transferir");
+        Transferir.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Transferir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DepositarActionPerformed(evt);
+                TransferirActionPerformed(evt);
             }
         });
-        jPanel1.add(Depositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 310, 60));
+        jPanel1.add(Transferir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 310, 60));
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
-        Cuenta.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         Cuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CuentaActionPerformed(evt);
             }
         });
 
-        Monto.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         Monto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MontoActionPerformed(evt);
             }
         });
 
-        PinTr.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         PinTr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PinTrActionPerformed(evt);
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Cuenta:");
+        jLabel2.setText("Cuenta Destino :");
 
-        jLabel3.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Monto:");
 
-        jLabel4.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Pin de transaccion:");
 
@@ -125,16 +115,16 @@ public class Deposito extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PinTr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Monto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Cuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(PinTr, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                    .addComponent(Monto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Cuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,39 +133,41 @@ public class Deposito extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Cuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Monto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(PinTr, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 560, 250));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 680, 270));
 
-        rSButtonMetro5.setBackground(new java.awt.Color(102, 102, 102));
-        rSButtonMetro5.setForeground(new java.awt.Color(0, 0, 0));
-        rSButtonMetro5.setText("Cancelar");
-        rSButtonMetro5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        rSButtonMetro5.addActionListener(new java.awt.event.ActionListener() {
+        cancelar.setBackground(new java.awt.Color(102, 102, 102));
+        cancelar.setForeground(new java.awt.Color(0, 0, 0));
+        cancelar.setText("Cancelar");
+        cancelar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro5ActionPerformed(evt);
+                cancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(rSButtonMetro5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 170, 60));
+        jPanel1.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 170, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -193,51 +185,76 @@ public class Deposito extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_MontoActionPerformed
 
-    private void DepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositarActionPerformed
+    private void TransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransferirActionPerformed
+        /*
+            Boton de tranferencia
+        */
         boolean DatosValidos = Validar.camposVacios(new String[]{Cuenta.getText(), Monto.getText(), PinTr.getText()});
         if (DatosValidos) {
             try {
-                EfectivisarDeposito(Cuenta.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText());
+                EfectivisarTransferencia(Cuenta.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText());
             } catch (UnsupportedOperationException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Atencion", JOptionPane.OK_OPTION);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Hubo un error inesperado", "Atencion", JOptionPane.OK_OPTION);
-            } 
+                JOptionPane.showMessageDialog(null, "Error desconocido al efectivisar el pago", "Atencion", JOptionPane.OK_OPTION);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente ","Atencion", JOptionPane.OK_OPTION);
         }
-    }//GEN-LAST:event_DepositarActionPerformed
+    }//GEN-LAST:event_TransferirActionPerformed
 
-    private void rSButtonMetro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro5ActionPerformed
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         deseaSalir();
-    }//GEN-LAST:event_rSButtonMetro5ActionPerformed
+    }//GEN-LAST:event_cancelarActionPerformed
 
     /**
      * @param args the command line arguments
-     * @param Usuario
      */
     public static void main(String args[], Cliente Usuario) {
-        
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Transferenncia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Transferenncia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Transferenncia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Transferenncia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Deposito(Usuario).setVisible(true);
+                new Transferenncia(Usuario).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSMetroTextPlaceHolder Cuenta;
-    private rojerusan.RSButtonMetro Depositar;
     private rojerusan.RSMetroTextPlaceHolder Monto;
     private rojerusan.RSMetroTextPlaceHolder PinTr;
+    private rojerusan.RSButtonMetro Transferir;
+    private rojerusan.RSButtonMetro cancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private rojerusan.RSButtonMetro rSButtonMetro5;
     // End of variables declaration//GEN-END:variables
 
     /* Metodo que pregunta si se desea salir*/
@@ -251,8 +268,8 @@ public class Deposito extends javax.swing.JDialog {
     }
 
     
-    // se debe efectivisar el pago
-    private void EfectivisarDeposito(String cuenta, int monto, String pinTr) throws Exception {
+    // se debe efectivisar la transferencia de dinero
+    private void EfectivisarTransferencia(String cuenta, int monto, String pinTr) throws Exception {
         /*
             Aqui deberia ir la inserccion en la base de datos
         */
@@ -260,7 +277,7 @@ public class Deposito extends javax.swing.JDialog {
             throw new UnsupportedOperationException("Saldo insuficiente");
         }
         
-        JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
+        JOptionPane.showMessageDialog(null, "Transferencia de dinero completa","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
         this.dispose();
     }
 
