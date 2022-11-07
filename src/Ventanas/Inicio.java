@@ -46,14 +46,12 @@ public class Inicio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         nom = new rojerusan.RSMetroTextPlaceHolder();
         id = new rojerusan.RSPasswordTextPlaceHolder();
-        rSButtonMetro4 = new rojerusan.RSButtonMetro();
+        AccesUser = new rojerusan.RSButtonMetro();
         ver = new rojerusan.RSButtonMetro();
         LoginError = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Nombre4 = new javax.swing.JLabel();
         Nombre5 = new javax.swing.JLabel();
-        Nombre2 = new javax.swing.JLabel();
-        Nombre3 = new javax.swing.JLabel();
         jMenu1 = new javax.swing.JMenu();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -132,10 +130,10 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        rSButtonMetro4.setText("Acceder");
-        rSButtonMetro4.addActionListener(new java.awt.event.ActionListener() {
+        AccesUser.setText("Acceder");
+        AccesUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro4ActionPerformed(evt);
+                AccesUserActionPerformed(evt);
             }
         });
 
@@ -191,7 +189,7 @@ public class Inicio extends javax.swing.JFrame {
                                 .addComponent(jLabel2))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(106, 106, 106)
-                                .addComponent(rSButtonMetro4, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(AccesUser, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 25, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -223,15 +221,9 @@ public class Inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LoginError)
                         .addGap(18, 18, 18)
-                        .addComponent(rSButtonMetro4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AccesUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-
-        Nombre2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        Nombre2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lbl-user1.png"))); // NOI18N
-
-        Nombre3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        Nombre3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lbl-pass.png"))); // NOI18N
 
         javax.swing.GroupLayout LogingLayout = new javax.swing.GroupLayout(Loging.getContentPane());
         Loging.getContentPane().setLayout(LogingLayout);
@@ -240,30 +232,10 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(LogingLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(LogingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(LogingLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Nombre2)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(LogingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(LogingLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Nombre3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         LogingLayout.setVerticalGroup(
             LogingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(LogingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(LogingLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Nombre2)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(LogingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(LogingLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(Nombre3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jMenu1.setText("jMenu1");
@@ -418,6 +390,7 @@ public class Inicio extends javax.swing.JFrame {
 
         jMenu2.setText("Ventana");
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         jMenuItem2.setText("Ayuda");
         jMenu2.add(jMenuItem2);
 
@@ -435,19 +408,24 @@ public class Inicio extends javax.swing.JFrame {
         jMenu3.setText("Menu");
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Opcion A");
+        jMenuItem3.setText("Depositar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem4.setText("Opcion B");
+        jMenuItem4.setText("Transferir");
         jMenu3.add(jMenuItem4);
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem5.setText("Opcion C");
+        jMenuItem5.setText("Saldo");
         jMenu3.add(jMenuItem5);
 
         jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem6.setText("Opcion D");
+        jMenuItem6.setText("Pagar");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -518,13 +496,13 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_verActionPerformed
 
-    private void rSButtonMetro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro4ActionPerformed
+    private void AccesUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccesUserActionPerformed
         // Verificamos el usuario y cerramos
         if (validarUser()) {
             Usuario = new Cliente(Integer.parseInt(id.getText()), nom.getText(), 123);
             Loging.dispose();
         }
-    }//GEN-LAST:event_rSButtonMetro4ActionPerformed
+    }//GEN-LAST:event_AccesUserActionPerformed
 
     private void idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyReleased
 
@@ -532,7 +510,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void idKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            System.out.println("Logear");
+            AccesUser.doClick();
         }
     }//GEN-LAST:event_idKeyPressed
 
@@ -546,7 +524,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void nomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            System.out.println("Logear");
+            AccesUser.doClick();
         }
     }//GEN-LAST:event_nomKeyPressed
 
@@ -577,6 +555,10 @@ public class Inicio extends javax.swing.JFrame {
          */
         Ventanas.ConsultaSaldo.main(null, Usuario);
     }//GEN-LAST:event_rSButtonMetro3ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -614,12 +596,11 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojerusan.RSButtonMetro AccesUser;
     private javax.swing.JLabel LoginError;
     private javax.swing.JDialog Loging;
     private javax.swing.JLabel Nombre;
     private javax.swing.JLabel Nombre1;
-    private javax.swing.JLabel Nombre2;
-    private javax.swing.JLabel Nombre3;
     private javax.swing.JLabel Nombre4;
     private javax.swing.JLabel Nombre5;
     private rojerusan.RSPasswordTextPlaceHolder id;
@@ -649,7 +630,6 @@ public class Inicio extends javax.swing.JFrame {
     private rojerusan.RSButtonMetro rSButtonMetro1;
     private rojerusan.RSButtonMetro rSButtonMetro2;
     private rojerusan.RSButtonMetro rSButtonMetro3;
-    private rojerusan.RSButtonMetro rSButtonMetro4;
     private rojerusan.RSButtonMetro rSButtonMetro5;
     private rojerusan.RSButtonMetro rSButtonMetro6;
     private rojerusan.RSButtonMetro ver;
