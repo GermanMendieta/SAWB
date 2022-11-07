@@ -409,15 +409,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel2" min="-2" pref="893" max="-2" attributes="0"/>
+          <Component id="jPanel2" alignment="0" pref="1091" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel2" pref="485" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
+          <Component id="jPanel2" alignment="0" pref="555" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -444,68 +441,73 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="80" width="300" height="390"/>
+              <AbsoluteConstraints x="20" y="80" width="370" height="450"/>
             </Constraint>
           </Constraints>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="rSButtonMetro5" min="-2" pref="171" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Component id="jLabel7" min="-2" pref="72" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="rSButtonMetro6" alignment="0" pref="215" max="32767" attributes="0"/>
-                                  <Component id="rSButtonMetro3" max="32767" attributes="0"/>
-                                  <Component id="rSButtonMetro2" max="32767" attributes="0"/>
-                                  <Component id="rSButtonMetro1" max="32767" attributes="0"/>
+                                  <Component id="jLabel6" pref="78" max="32767" attributes="0"/>
+                                  <Component id="jLabel5" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="jLabel6" alignment="0" pref="42" max="32767" attributes="0"/>
-                                  <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                          </Group>
+                          <Component id="jLabel8" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                          <Component id="jLabel9" alignment="1" min="-2" pref="69" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="rSButtonMetro3" max="32767" attributes="0"/>
+                          <Component id="rSButtonMetro2" max="32767" attributes="0"/>
+                          <Component id="rSButtonMetro1" max="32767" attributes="0"/>
+                          <Component id="rSButtonMetro6" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="rSButtonMetro5" min="-2" pref="177" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="73" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="rSButtonMetro1" pref="0" max="32767" attributes="0"/>
+                          <Component id="jLabel5" pref="81" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel6" pref="74" max="32767" attributes="0"/>
+                          <Component id="rSButtonMetro2" pref="0" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="rSButtonMetro1" pref="42" max="32767" attributes="0"/>
-                          <Component id="jLabel5" max="32767" attributes="0"/>
+                          <Component id="rSButtonMetro3" pref="0" max="32767" attributes="0"/>
+                          <Component id="jLabel7" pref="74" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel6" max="32767" attributes="0"/>
-                          <Component id="rSButtonMetro2" pref="42" max="32767" attributes="0"/>
+                          <Component id="jLabel8" pref="72" max="32767" attributes="0"/>
+                          <Component id="rSButtonMetro6" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel7" max="32767" attributes="0"/>
-                          <Component id="rSButtonMetro3" pref="42" max="32767" attributes="0"/>
+                          <Component id="jLabel9" pref="58" max="32767" attributes="0"/>
+                          <Component id="rSButtonMetro5" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel8" max="32767" attributes="0"/>
-                          <Component id="rSButtonMetro6" pref="42" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                      <Component id="rSButtonMetro5" min="-2" pref="42" max="-2" attributes="0"/>
-                      <EmptySpace pref="47" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -557,7 +559,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salir"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="1"/>
+                  <Font name="Tahoma" size="24" style="1"/>
                 </Property>
               </Properties>
               <Events>
@@ -574,18 +576,13 @@
                 <Property name="horizontalTextPosition" type="int" value="2"/>
                 <Property name="iconTextGap" type="int" value="10"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/iconos/deposit-icon.png"/>
-                </Property>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonMetro6ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/send-money-icon.png"/>
                 </Property>
@@ -607,6 +604,22 @@
                 </Property>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/iconos/deposit-icon.png"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel9">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/iconos/exit-icon.png"/>
+                </Property>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -618,7 +631,7 @@
               <Font name="Microsoft YaHei UI" size="48" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Web Banking Smart Assistant"/>
@@ -639,7 +652,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="80" width="840" height="370"/>
+              <AbsoluteConstraints x="20" y="80" width="1040" height="450"/>
             </Constraint>
           </Constraints>
         </Component>

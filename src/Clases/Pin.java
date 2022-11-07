@@ -9,7 +9,6 @@ interface Pin {
     /*
         Interfaz que contiene la estructura general de un pin
     */
-    int Id = 0;
-    int Pin = 0;
-    
+    boolean validarID();
+    boolean validarPin();
 }
