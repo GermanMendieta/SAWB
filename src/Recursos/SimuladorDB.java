@@ -22,8 +22,8 @@ public class SimuladorDB {
 
     public SimuladorDB() {
         SimuladorDB.Clientes = new Cliente[]{
-            new Cliente(1, "admin", Integer.parseInt(encriptar.Encriptar(12345))),
-            new Cliente(2, "UserB", Integer.parseInt(encriptar.Encriptar(56789)))
+            new Cliente(1, "admin", Integer.parseInt(encriptar.Encriptar(12345)), Integer.parseInt(encriptar.Encriptar(12345)) ),
+            new Cliente(2, "UserB", Integer.parseInt(encriptar.Encriptar(56789)), Integer.parseInt(encriptar.Encriptar(12345)) )
         };
         SimuladorDB.Cuentas = new Cuenta[]{
             new Cuenta(100, Clientes[0]),
@@ -70,7 +70,7 @@ public class SimuladorDB {
        |________________________________________________________________________________________|
      */
     public boolean ValidarUser(String nombre, String pin) {
-        System.out.println("Name:"+nombre +"\nPin:"+pin);
+        
         for (Cuenta Cuenta : Cuentas) {
             if (Cuenta.comparaCliente(nombre, pin)) {
                 return true;

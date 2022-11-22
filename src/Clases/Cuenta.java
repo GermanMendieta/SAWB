@@ -15,7 +15,7 @@ public class Cuenta {
     }
 
     public boolean comparaCliente(String nombre, String pin) {
-        return cliente.compruebaDatos(nombre, pin);
+        return cliente.validarUsuario(nombre, Integer.parseInt(pin));
     }
 
     
