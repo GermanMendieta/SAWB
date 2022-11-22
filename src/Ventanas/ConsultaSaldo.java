@@ -6,6 +6,7 @@
 package Ventanas;
 
 import Clases.Cliente;
+import Clases.Funciones;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -57,6 +58,7 @@ public class ConsultaSaldo extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         cancelar = new rojerusan.RSButtonMetro();
+        rSButtonMetro1 = new rojerusan.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -176,6 +178,15 @@ public class ConsultaSaldo extends javax.swing.JDialog {
         });
         jPanel1.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, 170, 60));
 
+        rSButtonMetro1.setText("Imprimir");
+        rSButtonMetro1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        rSButtonMetro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonMetro1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rSButtonMetro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 190, 60));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,6 +205,10 @@ public class ConsultaSaldo extends javax.swing.JDialog {
         Menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelarActionPerformed
+
+    private void rSButtonMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro1ActionPerformed
+        Funciones.MensajeDeAlerta(3, "Atencion", String.format("%s%s%s", "Impresion de ", "ticket", ""));
+    }//GEN-LAST:event_rSButtonMetro1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,6 +263,7 @@ public class ConsultaSaldo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private rojerusan.RSButtonMetro rSButtonMetro1;
     // End of variables declaration//GEN-END:variables
 
     // se debe efectivisar la transferencia de dinero

@@ -38,7 +38,7 @@ public class Funciones {
         }
     }
 
-    public void MensajeDeAlerta(int type, String titulo, String mensaje) {
+    public static void MensajeDeAlerta(int type, String titulo, String mensaje) {
 
         switch (type) {
             case 1:

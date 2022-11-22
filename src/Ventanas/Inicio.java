@@ -8,6 +8,7 @@ package Ventanas;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import Clases.*;
+import Recursos.SimuladorDB;
 
 /**
  *
@@ -21,9 +22,11 @@ public class Inicio extends javax.swing.JFrame {
     |    Variables Globales                 |
     |_______________________________________|
      */
-    boolean visible;
+    boolean passVisible;
     Cliente Usuario;
-    Conexion Con;
+    Cuenta CuentaU;
+    
+    SimuladorDB Con;
 
     /**
      * Creates new form Inicio
@@ -35,15 +38,16 @@ public class Inicio extends javax.swing.JFrame {
        |                                                                                   |
        |    Llamamos a la funcion que se enecarga de configurar la ventana                 |
        |___________________________________________________________________________________|
-         */
+        */
         configurarVentana();
-
+        
         /*
         ______________________________________
        |                                      |
        |       login del usuario              |
        |______________________________________|
          */
+        Con = new SimuladorDB();
         logger();
     }
 
@@ -577,21 +581,22 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MouseExited
 
     private void verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verActionPerformed
-        if (visible == true) {
+        if (passVisible == true) {
             id.setEchoChar((char) 0);
-            visible = false;
+            passVisible = false;
 
         } else {
             id.setEchoChar('\u2022');
-            visible = true;
+            passVisible = true;
         }
     }//GEN-LAST:event_verActionPerformed
 
     private void AccesUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccesUserActionPerformed
         // Verificamos el usuario y cerramos
         if (validarUser()) {
-            Usuario = new Cliente(Integer.parseInt(id.getText()), nom.getText(), 123);
             Loging.dispose();
+        } else {
+            LoginError.setVisible(true);
         }
     }//GEN-LAST:event_AccesUserActionPerformed
 
@@ -747,7 +752,7 @@ public class Inicio extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     /* Metodo que modifica la ventana para actual */
     private void configurarVentana() {
-        visible = true;
+        passVisible = true;
         id.setEchoChar('\u2022');
         this.setResizable(false);
     }
@@ -768,15 +773,15 @@ public class Inicio extends javax.swing.JFrame {
         Loging.setAlwaysOnTop(true);
         LoginError.setVisible(false);
 
-        // hace visible la ventana
+        // hace passVisible la ventana
         Loging.setVisible(true);
     }
 
     private boolean validarUser() {
         if (nom.getText().compareTo("") != 0 || id.getText().compareTo("") != 0) {
-            return true;
+            return Con.ValidarUser(nom.getText(), encriptar.Encriptar(Integer.parseInt(id.getText())));
         }
-        LoginError.setVisible(true);
+        
         return false;
     }
 

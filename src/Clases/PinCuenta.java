@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.Objects;
+
 /**
  *
  * @author Grupo 4
@@ -17,18 +19,18 @@ class PinCuenta implements Pin {
     }
 
     @Override
-    public boolean validarID() {
+    public boolean validarID(Integer id) {
         try {
-            return Id != 0;
+            return Objects.equals(Id, id);
         } catch (Exception e) {
             return false;
         }
     }
 
     @Override
-    public boolean validarPin() {
+    public boolean validarPin(Integer pin) {
         try {
-            return Pin != 0;
+            return Objects.equals(Pin, pin);
         } catch (Exception e) {
             return false;
         }

@@ -5,11 +5,7 @@
  */
 package Clases;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,30 +13,94 @@ import java.util.logging.Logger;
  */
 public class encriptar {
 
-    private static String getMD5(String input) throws Exception {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] messageDigest = md.digest(input.getBytes());
-            BigInteger number = new BigInteger(1, messageDigest);
-            String hashtext = number.toString(16);
-
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-            return hashtext;
-
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+    /*       ___________________________________
+        |                                   |
+        |       Encriptar mensaje           |
+        |    se retorna el string del campo |
+        |    de entrada encriptado          |
+        |___________________________________|
+     */
+    public static String Encriptar(Integer original) {
+        ArrayList<Integer> digitos = new ArrayList<>();
+        // separamos cada digito
+        for (int i = 1; i < original; i = i * 10) {
+            digitos.add((original % (i * 10)) / i);
+            /*   ___________________________________
+                |                                   |
+                |       Encriptar mensaje           |
+                |    se retorna el string del campo |
+                |    de entrada encriptado          |
+                |___________________________________|
+             */
         }
+        // encriptamos
+        for (int i = 0; i < digitos.size(); i++) {
+            digitos.set(i, (digitos.get(i) + 7) % 10);
+        }
+        // reordenamos
+        for (int i = 0; i < digitos.size()-1; i += 2) {
+            swap(digitos, i, i+1);
+        }
+        // cargamos el resultado
+        String resultado = "";
+        for (int i = 1; i < original; i = i * 10) {
+            resultado = digitos.get(0) + resultado;
+            digitos.remove(0);
+
+        }
+        // retornamos la solucion 
+        return String.format("%s", resultado);
+    }
+
+    /*   ___________________________________
+        |                                   |
+        |       DesEncriptar mensaje        |
+        |    se retorna el string del campo |
+        |     de entrada desencriptado      |
+        |___________________________________|
+     */
+    public static String DesEncriptar(String msgEncrip) {
+        ArrayList<Integer> digitos = new ArrayList<>();
+        // separamos cada digito
+        for (int i = 0; i < msgEncrip.length(); i++) {
+            digitos.add(Integer.parseInt(msgEncrip.charAt(i) + ""));
+        }
+        // ubicamos cada digito en su posicion
+        for (int i = digitos.size()-1; i > 0; i -= 2) {
+            swap(digitos, i, i-1);
+        }
+        // Desencriptamos
+        for (int i = 0; i < digitos.size(); i++) {
+            digitos.set(i, (digitos.get(i) + 3) % 10);
+        }
+        // preparamos el resultado
+        String resultado = "";
+        for (int i = 0; i < msgEncrip.length(); i++) {
+            resultado += digitos.get(0);
+            digitos.remove(0);
+        }
+        // retornamos el resultado
+        return resultado;
+    }
+
+    /*
+        metodo que intercambia 2 elementos de un arrayList
+     */
+    private static void swap(ArrayList<Integer> digitos, int i, int j) {
+        int tmp = digitos.get(i);
+        digitos.set(i, digitos.get(j));
+        digitos.set(j, tmp);
+    }
+
+    /* Metodos uxiliares para impresion de arraylist*/
+    private static void imprArray(ArrayList arreglo) {
+        arreglo.forEach((object) -> {
+            System.out.println(object);
+        });
     }
     
-    public static String encriptar(String texto){
-        try {
-            return texto.length() > 0 ? getMD5(texto): "";
-        } catch (Exception ex) {
-            Logger.getLogger(encriptar.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+    public static void main(String[] args) {
+        System.out.println(DesEncriptar(Encriptar(12345)));
     }
-    
+
 }

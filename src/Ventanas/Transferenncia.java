@@ -270,7 +270,7 @@ public class Transferenncia extends javax.swing.JDialog {
         if (monto > 25000000) {
             throw new UnsupportedOperationException("Saldo insuficiente");
         }
-        
+        Funciones.MensajeDeAlerta(3, "Atencion", String.format("%s%s%s", cuenta, monto, ""));
         JOptionPane.showMessageDialog(null, "Transferencia de dinero completa","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
     }
 
