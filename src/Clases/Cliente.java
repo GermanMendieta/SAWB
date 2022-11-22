@@ -13,7 +13,7 @@ public class Cliente {
 
     /* Constructor de la clase Cliente*/
     public Cliente(int id, String nombre, int pinC) {
-        if (validarUsuario(nombre, id)) {
+        if (validarUserNotEmpty(nombre, id)) {
             this.id = id;
             this.nombre = nombre;
             this.pinCuenta = new PinCuenta(id);
@@ -22,14 +22,22 @@ public class Cliente {
         
     }
 
-    private boolean validarUsuario(String nombre, int pin) {
+    private boolean validarUserNotEmpty(String nombre, int pin) {
         /* validamos el usuario*/
         try {
-            return (pinCuenta.validarPin(pin) && nombre.compareTo("") == 0);
+            return (pinCuenta.validarPin(pin) && this.nombre.compareTo(nombre) == 0);
         } catch (Exception e) {
             return false;
         }
-
+    }
+    
+    private boolean validarUsuario(String nombre, int pin) {
+        /* validamos el usuario*/
+        try {
+            return (pinCuenta.validarPin(pin) && this.nombre.compareTo(nombre) == 0);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     boolean validaPinC(PinCuenta pinC) {
@@ -41,7 +49,7 @@ public class Cliente {
     }
 
     boolean compruebaDatos(String nombre, String pin) {
-        return validarUsuario(nombre, id);
+        return validarUsuario(nombre, Integer.parseInt(pin));
     }
 
 }

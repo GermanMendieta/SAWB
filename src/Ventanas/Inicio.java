@@ -770,7 +770,6 @@ public class Inicio extends javax.swing.JFrame {
         Loging.setModal(true);
         Loging.pack();
         Loging.setResizable(false);
-        Loging.setAlwaysOnTop(true);
         LoginError.setVisible(false);
 
         // hace passVisible la ventana
@@ -778,6 +777,8 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     private boolean validarUser() {
+        System.out.println(nom.getText());
+        System.out.println(id.getText());
         if (nom.getText().compareTo("") != 0 || id.getText().compareTo("") != 0) {
             return Con.ValidarUser(nom.getText(), encriptar.Encriptar(Integer.parseInt(id.getText())));
         }

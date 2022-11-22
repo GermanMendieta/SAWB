@@ -100,7 +100,7 @@ public class encriptar {
     }
     
     public static void main(String[] args) {
-        System.out.println(DesEncriptar(Encriptar(12345)));
+        System.out.println(DesEncriptar(Encriptar(1234)));
     }
 
 }
