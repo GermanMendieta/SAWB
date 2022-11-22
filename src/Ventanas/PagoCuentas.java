@@ -6,7 +6,9 @@
 package Ventanas;
 
 import Clases.Cliente;
+import Clases.Funciones;
 import Clases.Validar;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,8 +21,8 @@ public class PagoCuentas extends javax.swing.JDialog {
      * Creates new form PagoCuentas
      */
     Cliente User;
-
-    public PagoCuentas(Cliente User) {
+    JFrame Menu;
+    public PagoCuentas(Cliente User,JFrame menu) {
         /*
             Configuramos la ventana  
          */
@@ -30,7 +32,7 @@ public class PagoCuentas extends javax.swing.JDialog {
         this.setModal(true);
 
         this.User = User;
-
+        this.Menu = menu;
         initComponents();
     }
 
@@ -250,6 +252,7 @@ public class PagoCuentas extends javax.swing.JDialog {
         if (DatosValidos) {
             try {
                 EfectivisarDeposito(Cuenta.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText());
+                Funciones.salir(this, Menu);
             } catch (UnsupportedOperationException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Atencion", JOptionPane.OK_OPTION);
             } catch (Exception ex) {
@@ -261,7 +264,7 @@ public class PagoCuentas extends javax.swing.JDialog {
     }//GEN-LAST:event_DepositarActionPerformed
 
     private void rSButtonMetro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro5ActionPerformed
-        deseaSalir();
+        Funciones.deseaSalir(this, Menu);
     }//GEN-LAST:event_rSButtonMetro5ActionPerformed
 
     private void MontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MontoActionPerformed
@@ -281,13 +284,14 @@ public class PagoCuentas extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      * @param Usuario
+     * @param ventanaAnterior
      */
-    public static void main(String args[], Cliente Usuario) {
+    public static void main(String args[], Cliente Usuario, JFrame ventanaAnterior) {
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PagoCuentas(Usuario).setVisible(true);
+                new PagoCuentas(Usuario, ventanaAnterior).setVisible(true);
             }
         });
     }
@@ -311,15 +315,6 @@ public class PagoCuentas extends javax.swing.JDialog {
     private rojerusan.RSButtonMetro rSButtonMetro5;
     // End of variables declaration//GEN-END:variables
 
-    /* Metodo que pregunta si se desea salir*/
-    private void deseaSalir() {
-
-        // se pregunta al usuario si quiere salir y si es asi se cierra la ventana
-        int r = JOptionPane.showConfirmDialog(null, "Seguro que desea cancelar la operacion", "Atencion", JOptionPane.OK_CANCEL_OPTION);
-        if ((r == JOptionPane.YES_OPTION)) {
-            this.dispose();
-        }
-    }
 
     
     // se debe efectivisar el pago
@@ -332,7 +327,6 @@ public class PagoCuentas extends javax.swing.JDialog {
         }
         
         JOptionPane.showMessageDialog(null, "Pago efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
-        this.dispose();
     }
 
 }

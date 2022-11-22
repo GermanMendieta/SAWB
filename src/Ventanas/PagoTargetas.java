@@ -15,14 +15,14 @@ import javax.swing.JOptionPane;
  *
  * @author Grupo 4
  */
-public class Deposito extends javax.swing.JDialog {
+public class PagoTargetas extends javax.swing.JDialog {
 
     /**
-     * Creates new form Transferencia
+     * Creates new form PagoCuentas
      */
     Cliente User;
     JFrame Menu;
-    public Deposito(Cliente User, JFrame menu) {
+    public PagoTargetas(Cliente User, JFrame Menu) {
         /*
             Configuramos la ventana  
          */
@@ -32,7 +32,7 @@ public class Deposito extends javax.swing.JDialog {
         this.setModal(true);
 
         this.User = User;
-        this.Menu = menu;
+        this.Menu = Menu;
         
         initComponents();
     }
@@ -56,6 +56,11 @@ public class Deposito extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        DeudaCombo = new rojerusan.RSComboMetro();
+        jLabel6 = new javax.swing.JLabel();
+        aPagar = new javax.swing.JLabel();
+        ConsultarDeuda = new rojerusan.RSButtonMetro();
         rSButtonMetro5 = new rojerusan.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -68,18 +73,18 @@ public class Deposito extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Deposito en Cuenta");
+        jLabel1.setText("Pago de Targetas");
         jLabel1.setOpaque(true);
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 560, 90));
 
-        Depositar.setText("Depositar en cuenta");
-        Depositar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Depositar.setText("Aceptar");
+        Depositar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Depositar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DepositarActionPerformed(evt);
             }
         });
-        jPanel1.add(Depositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 310, 60));
+        jPanel1.add(Depositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 590, 310, 60));
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -108,35 +113,76 @@ public class Deposito extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Cuenta:");
+        jLabel2.setText("Nro de Cuenta");
 
         jLabel3.setBackground(new java.awt.Color(51, 51, 51));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Monto:");
+        jLabel3.setText("Monto a Pagar");
 
         jLabel4.setBackground(new java.awt.Color(51, 51, 51));
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Pin de transaccion:");
+        jLabel4.setText("Targeta a pagar");
+
+        jLabel5.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Pin de transaccion");
+
+        DeudaCombo.setForeground(new java.awt.Color(0, 0, 0));
+        DeudaCombo.setMaximumRowCount(5);
+        DeudaCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar", "Targeta 1", "Targeta 2", "Targeta 3" }));
+        DeudaCombo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        DeudaCombo.setName(""); // NOI18N
+        DeudaCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeudaComboActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Saldo de Deuda");
+
+        aPagar.setBackground(new java.awt.Color(51, 51, 51));
+        aPagar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        aPagar.setForeground(new java.awt.Color(0, 0, 0));
+        aPagar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        ConsultarDeuda.setText("Consultar Deuda");
+        ConsultarDeuda.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ConsultarDeuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultarDeudaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ConsultarDeuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Cuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                    .addComponent(DeudaCombo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PinTr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Monto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Cuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Monto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(aPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -146,18 +192,28 @@ public class Deposito extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Cuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeudaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ConsultarDeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Monto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Monto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(PinTr, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PinTr, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 560, 250));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 740, 430));
 
         rSButtonMetro5.setBackground(new java.awt.Color(102, 102, 102));
         rSButtonMetro5.setForeground(new java.awt.Color(0, 0, 0));
@@ -168,17 +224,17 @@ public class Deposito extends javax.swing.JDialog {
                 rSButtonMetro5ActionPerformed(evt);
             }
         });
-        jPanel1.add(rSButtonMetro5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 170, 60));
+        jPanel1.add(rSButtonMetro5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 170, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -192,12 +248,8 @@ public class Deposito extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_PinTrActionPerformed
 
-    private void MontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MontoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MontoActionPerformed
-
     private void DepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositarActionPerformed
-        boolean DatosValidos = Validar.camposVacios(new String[]{Cuenta.getText(), Monto.getText(), PinTr.getText()});
+        boolean DatosValidos = Validar.camposVacios(new String[]{Cuenta.getText(), Monto.getText(), PinTr.getText()}) && DeudaCombo.getSelectedIndex() > 0;
         if (DatosValidos) {
             try {
                 EfectivisarDeposito(Cuenta.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText());
@@ -213,34 +265,51 @@ public class Deposito extends javax.swing.JDialog {
     }//GEN-LAST:event_DepositarActionPerformed
 
     private void rSButtonMetro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro5ActionPerformed
-        /* se pregunta si desea salir*/
-        Funciones.deseaSalir(this , Menu);
+        Funciones.deseaSalir(this, Menu);
     }//GEN-LAST:event_rSButtonMetro5ActionPerformed
+
+    private void MontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MontoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MontoActionPerformed
+
+    private void DeudaComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeudaComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeudaComboActionPerformed
+
+    private void ConsultarDeudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarDeudaActionPerformed
+        if (DeudaCombo.getSelectedIndex() > 0) {
+            aPagar.setText(((DeudaCombo.getSelectedIndex()*3 + 10)*1000000) + "  gs.");
+        }
+    }//GEN-LAST:event_ConsultarDeudaActionPerformed
 
     /**
      * @param args the command line arguments
      * @param Usuario
-     * @param VentanaAnterior
      */
-    public static void main(String args[], Cliente Usuario, Inicio VentanaAnterior) {
+    public static void main(String args[], Cliente Usuario, JFrame VentanaAnterior) {
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Deposito(Usuario, VentanaAnterior).setVisible(true);
+                new PagoTargetas(Usuario, VentanaAnterior).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojerusan.RSButtonMetro ConsultarDeuda;
     private rojerusan.RSMetroTextPlaceHolder Cuenta;
     private rojerusan.RSButtonMetro Depositar;
+    private rojerusan.RSComboMetro DeudaCombo;
     private rojerusan.RSMetroTextPlaceHolder Monto;
     private rojerusan.RSMetroTextPlaceHolder PinTr;
+    private javax.swing.JLabel aPagar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private rojerusan.RSButtonMetro rSButtonMetro5;
@@ -254,12 +323,11 @@ public class Deposito extends javax.swing.JDialog {
         /*
             Aqui deberia ir la inserccion en la base de datos
         */
-        if (monto > 25000000) {
+        if (monto > 2500000) {
             throw new UnsupportedOperationException("Saldo insuficiente");
         }
         
-        JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
-        
+        JOptionPane.showMessageDialog(null, "Pago efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
     }
 
 }

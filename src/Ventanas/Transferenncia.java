@@ -6,7 +6,9 @@
 package Ventanas;
 
 import Clases.Cliente;
+import Clases.Funciones;
 import Clases.Validar;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,8 +21,9 @@ public class Transferenncia extends javax.swing.JDialog {
      * Creates new form Transferencia
      */
     Cliente User;
+    JFrame Menu;
 
-    public Transferenncia(Cliente User) {
+    public Transferenncia(Cliente User, JFrame menu) {
         /*
             Configuramos la ventana  
          */
@@ -30,7 +33,7 @@ public class Transferenncia extends javax.swing.JDialog {
         this.setModal(true);
 
         this.User = User;
-
+        this.Menu = menu;
         initComponents();
     }
 
@@ -193,6 +196,7 @@ public class Transferenncia extends javax.swing.JDialog {
         if (DatosValidos) {
             try {
                 EfectivisarTransferencia(Cuenta.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText());
+                Funciones.salir(this, Menu);
             } catch (UnsupportedOperationException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Atencion", JOptionPane.OK_OPTION);
             } catch (Exception ex) {
@@ -204,13 +208,13 @@ public class Transferenncia extends javax.swing.JDialog {
     }//GEN-LAST:event_TransferirActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        deseaSalir();
+        Funciones.deseaSalir(this, Menu);;
     }//GEN-LAST:event_cancelarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[], Cliente Usuario) {
+    public static void main(String args[], Cliente Usuario, JFrame ventanaAnterior) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -238,7 +242,7 @@ public class Transferenncia extends javax.swing.JDialog {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Transferenncia(Usuario).setVisible(true);
+                new Transferenncia(Usuario, ventanaAnterior).setVisible(true);
             }
         });
     }
@@ -257,16 +261,6 @@ public class Transferenncia extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 
-    /* Metodo que pregunta si se desea salir*/
-    private void deseaSalir() {
-
-        // se pregunta al usuario si quiere salir y si es asi se cierra la ventana
-        int r = JOptionPane.showConfirmDialog(null, "Seguro que desea cancelar la operacion", "Atencion", JOptionPane.OK_CANCEL_OPTION);
-        if ((r == JOptionPane.YES_OPTION)) {
-            this.dispose();
-        }
-    }
-
     
     // se debe efectivisar la transferencia de dinero
     private void EfectivisarTransferencia(String cuenta, int monto, String pinTr) throws Exception {
@@ -278,7 +272,6 @@ public class Transferenncia extends javax.swing.JDialog {
         }
         
         JOptionPane.showMessageDialog(null, "Transferencia de dinero completa","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
-        this.dispose();
     }
 
 }

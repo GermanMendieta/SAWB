@@ -6,6 +6,7 @@
 package Ventanas;
 
 import Clases.Cliente;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,8 +19,8 @@ public class ConsultaSaldo extends javax.swing.JDialog {
      * Creates new form ConsultaSaldo
      */
     Cliente User;
-
-    public ConsultaSaldo(Cliente User) {
+    JFrame Menu;
+    public ConsultaSaldo(Cliente User, JFrame menu) {
         /*
             Configuramos la ventana  
          */
@@ -29,7 +30,7 @@ public class ConsultaSaldo extends javax.swing.JDialog {
         this.setModal(true);
 
         this.User = User;
-
+        this.Menu = menu;
         initComponents();
     }
 
@@ -190,13 +191,16 @@ public class ConsultaSaldo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        Menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 
     /**
      * @param args the command line arguments
+     * @param Usuario
+     * @param VentanaAnterior
      */
-    public static void main(String args[], Cliente Usuario) {
+    public static void main(String args[], Cliente Usuario, JFrame VentanaAnterior) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -219,14 +223,12 @@ public class ConsultaSaldo extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(ConsultaSaldo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
         /* Create and display the form */
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultaSaldo(Usuario).setVisible(true);
+                new ConsultaSaldo(Usuario, VentanaAnterior).setVisible(true);
             }
         });
     }

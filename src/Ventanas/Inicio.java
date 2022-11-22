@@ -15,18 +15,35 @@ import Clases.*;
  */
 public class Inicio extends javax.swing.JFrame {
 
-    /* Variables Globales */
+    /*
+     _______________________________________
+    |                                       |
+    |    Variables Globales                 |
+    |_______________________________________|
+     */
     boolean visible;
     Cliente Usuario;
+    Conexion Con;
 
     /**
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();
-        /* Llamamos a la funcion que se enecarga de configurar la ventana*/
+        /*
+        ___________________________________________________________________________________
+       |                                                                                   |
+       |    Llamamos a la funcion que se enecarga de configurar la ventana                 |
+       |___________________________________________________________________________________|
+         */
         configurarVentana();
-        /* login del usuario*/
+
+        /*
+        ______________________________________
+       |                                      |
+       |       login del usuario              |
+       |______________________________________|
+         */
         logger();
     }
 
@@ -76,6 +93,9 @@ public class Inicio extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -464,6 +484,16 @@ public class Inicio extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setText("Usuario");
+
+        jMenuItem8.setText("Cambiar de Cuenta");
+        jMenu4.add(jMenuItem8);
+
+        jMenuItem9.setText("jMenuItem9");
+        jMenu4.add(jMenuItem9);
+
+        jMenuBar1.add(jMenu4);
+
         jMenu3.setText("Menu");
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
@@ -593,37 +623,44 @@ public class Inicio extends javax.swing.JFrame {
         /*
             Abre la ventana para hacer deposito
          */
-        Ventanas.Deposito.main(null, Usuario);
-        System.out.println("Sisisisisisisisisissi");
+        this.setVisible(false);
+        Ventanas.Deposito.main(null, Usuario, this);
     }//GEN-LAST:event_rSButtonMetro1ActionPerformed
 
     private void rSButtonMetro6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro6ActionPerformed
         /*
             Se abre la ventana de pago de servicios
-        */
-        Ventanas.PagoCuentas.main(null, Usuario);
+         */
+        this.setVisible(false);
+        Ventanas.PagoCuentas.main(null, Usuario, this);
     }//GEN-LAST:event_rSButtonMetro6ActionPerformed
 
     private void rSButtonMetro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro2ActionPerformed
         /*
             Se abre la ventana de transferencia bancaria
          */
-        Ventanas.Transferenncia.main(null, Usuario);
+        this.setVisible(false);
+        Ventanas.Transferenncia.main(null, Usuario, this);
     }//GEN-LAST:event_rSButtonMetro2ActionPerformed
 
     private void rSButtonMetro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro3ActionPerformed
         /*
             Se abre la ventana de consulta de cuenta bancaria
          */
-        Ventanas.ConsultaSaldo.main(null, Usuario);
+        this.setVisible(false);
+        Ventanas.ConsultaSaldo.main(null, Usuario, this);
     }//GEN-LAST:event_rSButtonMetro3ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void rSButtonMetro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro4ActionPerformed
-        // TODO add your handling code here:
+        /*
+            Se abre la ventana de pago de targetas
+        */
+        this.setVisible(false);
+        Ventanas.PagoTargetas.main(null, Usuario, this);
     }//GEN-LAST:event_rSButtonMetro4ActionPerformed
 
     /**
@@ -685,6 +722,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -692,6 +730,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
