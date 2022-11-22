@@ -24,7 +24,7 @@ public class Cliente {
     private boolean validarUserNotEmpty(String nombre, int pin) {
         /* validamos el usuario*/
         try {
-            return (pinCuenta.validarPin(pin) && this.nombre.compareTo(nombre) == 0);
+            return !(nombre.length() < 1 || pin == 0);
         } catch (Exception e) {
             return false;
         }
@@ -33,7 +33,7 @@ public class Cliente {
     public boolean validarUsuario(String nombre, int pin) {
         /* validamos el usuario*/
         try {
-            System.out.println("Pin:"+pinCuenta);
+            System.out.println("Pin:"+pinCuenta.Pin);
             System.out.println("nombre:"+this.nombre);
             return (pinCuenta.validarPin(pin) && this.nombre.compareTo(nombre) == 0);
         } catch (Exception e) {
