@@ -33,8 +33,6 @@ public class Cliente {
     public boolean validarUsuario(String nombre, int pin) {
         /* validamos el usuario*/
         try {
-            System.out.println("Pin:"+pinCuenta.Pin);
-            System.out.println("nombre:"+this.nombre);
             return (pinCuenta.validarPin(pin) && this.nombre.compareTo(nombre) == 0);
         } catch (Exception e) {
             return false;

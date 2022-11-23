@@ -142,7 +142,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         id.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 112, 192), 2));
-        id.setText("123");
+        id.setText("12345");
         id.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         id.setPlaceholder("Ingrese la contraseña...");
         id.addActionListener(new java.awt.event.ActionListener() {
@@ -595,6 +595,8 @@ public class Inicio extends javax.swing.JFrame {
         // Verificamos el usuario y cerramos
         if (validarUser()) {
             Loging.dispose();
+            
+            cargarCuenta();
         } else {
             LoginError.setVisible(true);
         }
@@ -777,13 +779,15 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     private boolean validarUser() {
-        System.out.println(nom.getText());
-        System.out.println(id.getText());
         if (nom.getText().compareTo("") != 0 || id.getText().compareTo("") != 0) {
             return Con.ValidarUser(nom.getText(), encriptar.Encriptar(Integer.parseInt(id.getText())));
         }
         
         return false;
+    }
+
+    private void cargarCuenta() {
+//        Con.GetSaldoCliente(Usuario);
     }
 
 }
