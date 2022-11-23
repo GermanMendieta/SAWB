@@ -7,13 +7,13 @@ import java.util.Objects;
  *
  * @author Grupo 4
  */
-class PinTransaccional implements Pin{
+public class PinTransaccional implements Pin{
     // Clase pin transaccional
     static int cantidad;
     Integer Id;
     Integer Pin;
 
-    PinTransaccional(int pin) {
+    public PinTransaccional(int pin) {
         Id = ++cantidad;
         this.Pin = pin;
     }

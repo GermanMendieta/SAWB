@@ -13,4 +13,8 @@ public class Servicio {
         this.nombre = nombre;
     }
     
+    public String getNombre(){
+        return nombre;
+    }
+    
 }

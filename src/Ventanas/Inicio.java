@@ -646,7 +646,9 @@ public class Inicio extends javax.swing.JFrame {
             Se abre la ventana de pago de servicios
          */
         this.setVisible(false);
-        Ventanas.PagoCuentas.main(null, Usuario, this);
+        Cuenta[] cuentasCliente = Con.getCuentas(Usuario);
+        Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
+        Ventanas.PagoCuentas.main(null, Usuario, this, Con,debitosCliente);
     }//GEN-LAST:event_rSButtonMetro6ActionPerformed
 
     private void rSButtonMetro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro2ActionPerformed

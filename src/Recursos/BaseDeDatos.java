@@ -127,5 +127,13 @@ public class BaseDeDatos {
     public ArrayList getTransferencias() {
         return Transferencias;
     }
+
+    public Servicio[] getServicios() {
+        return Servicios;
+    }
     
+    public void agregarPagoCredito(Pagos pago, PagoServicio pagoServicio) {
+        Pago.add(pago);
+        PagoServicio.add(pagoServicio);
+    }
 }

@@ -6,8 +6,18 @@
 package Ventanas;
 
 import Clases.Cliente;
+import Clases.Cuenta;
+import Clases.Debito;
 import Clases.Funciones;
+import Clases.PagoServicio;
+import Clases.Pagos;
+import Clases.PinTransaccional;
+import Clases.Servicio;
+import Clases.Transferencias;
 import Clases.Validar;
+import Clases.encriptar;
+import Recursos.BaseDeDatos;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -22,7 +32,12 @@ public class PagoCuentas extends javax.swing.JDialog {
      */
     Cliente User;
     JFrame Menu;
-    public PagoCuentas(Cliente User,JFrame menu) {
+    BaseDeDatos Com;
+    Debito[] Debitos;
+    Servicio[] ServicioAPagar;
+    Servicio ServicioSelected;
+
+    public PagoCuentas(Cliente User, JFrame menu, BaseDeDatos Con, Debito[] Debitos) {
         /*
             Configuramos la ventana  
          */
@@ -33,7 +48,12 @@ public class PagoCuentas extends javax.swing.JDialog {
 
         this.User = User;
         this.Menu = menu;
+        this.Com = Con;
+        this.Debitos = Debitos;
+
         initComponents();
+
+        cargarServicios();
     }
 
     /**
@@ -134,7 +154,7 @@ public class PagoCuentas extends javax.swing.JDialog {
 
         DeudaCombo.setForeground(new java.awt.Color(0, 0, 0));
         DeudaCombo.setMaximumRowCount(5);
-        DeudaCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ande", "Atencion Medica", "Cooperativa", "Essap", "IPS", "Personal", "Servicio Vario", "Tigo", "Seguro de Vida" }));
+        DeudaCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar", "Ande", "Atencion Medica", "Cooperativa", "Essap", "IPS", "Personal", "Servicio Vario", "Tigo", "Seguro de Vida" }));
         DeudaCombo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         DeudaCombo.setName(""); // NOI18N
         DeudaCombo.addActionListener(new java.awt.event.ActionListener() {
@@ -251,15 +271,15 @@ public class PagoCuentas extends javax.swing.JDialog {
         boolean DatosValidos = Validar.camposVacios(new String[]{Cuenta.getText(), Monto.getText(), PinTr.getText()}) && DeudaCombo.getSelectedIndex() > 0;
         if (DatosValidos) {
             try {
-                EfectivisarDeposito(Cuenta.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText());
+                EfectivisarDeposito(Cuenta.getText(), Integer.parseInt(Monto.getText()), PinTr.getText());
                 Funciones.salir(this, Menu);
             } catch (UnsupportedOperationException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Atencion", JOptionPane.OK_OPTION);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Hubo un error inesperado", "Atencion", JOptionPane.OK_OPTION);
-            } 
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente ","Atencion", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente ", "Atencion", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_DepositarActionPerformed
 
@@ -277,7 +297,11 @@ public class PagoCuentas extends javax.swing.JDialog {
 
     private void ConsultarDeudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarDeudaActionPerformed
         if (DeudaCombo.getSelectedIndex() > 0) {
-            aPagar.setText(((DeudaCombo.getSelectedIndex()*3 + 10)*10000) + "  gs.");
+            aPagar.setText(((DeudaCombo.getSelectedIndex() * 7 + 10) * 23000) + "  gs.");
+            ServicioSelected = ServicioAPagar[DeudaCombo.getSelectedIndex() - 1];
+        } else {
+            ServicioSelected = null;
+            aPagar.setText("");
         }
     }//GEN-LAST:event_ConsultarDeudaActionPerformed
 
@@ -285,13 +309,14 @@ public class PagoCuentas extends javax.swing.JDialog {
      * @param args the command line arguments
      * @param Usuario
      * @param ventanaAnterior
+     * @param debitos
      */
-    public static void main(String args[], Cliente Usuario, JFrame ventanaAnterior) {
-        
+    public static void main(String args[], Cliente Usuario, JFrame ventanaAnterior, BaseDeDatos con, Debito[] debitos) {
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PagoCuentas(Usuario, ventanaAnterior).setVisible(true);
+                new PagoCuentas(Usuario, ventanaAnterior, con, debitos).setVisible(true);
             }
         });
     }
@@ -315,18 +340,53 @@ public class PagoCuentas extends javax.swing.JDialog {
     private rojerusan.RSButtonMetro rSButtonMetro5;
     // End of variables declaration//GEN-END:variables
 
-
-    
     // se debe efectivisar el pago
     private void EfectivisarDeposito(String cuenta, int monto, String pinTr) throws Exception {
         /*
             Aqui deberia ir la inserccion en la base de datos
-        */
-        if (monto > 2500000) {
-            throw new UnsupportedOperationException("Saldo insuficiente");
+         */
+
+        if (User.validaPinTr(Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr))))) {
+
+            // TODO reporte
+            Boolean existeCuenta = false;
+            // buscamos la cuenta de donde saldran los fondos
+            for (Debito debito : this.Debitos) {
+                if (debito.getCuenta() == Integer.parseInt(Cuenta.getText())) {
+                    existeCuenta = true;
+                    /* descontamos el pago de la cuenta de origen */
+                    debito.quitarMonto(Integer.parseInt(aPagar.getText().split(" ")[0]));
+                    /* registramos el pago */
+                    Pagos pagoRealizado = new Pagos(debito, new PinTransaccional(Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr)))));
+                    PagoServicio pagoServicio = new PagoServicio(pagoRealizado, ServicioSelected, monto);
+                    Com.agregarPagoCredito(pagoRealizado, pagoServicio);
+                    // actualizamos el menu
+                    Funciones.actualizarSaldo(debito.getMonto() + " gs.");
+                }
+            }
+
+            if (!existeCuenta) {
+                throw new IllegalArgumentException("No existe la cuenta de usuario insertada");
+            }
+
+            JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ", "Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+//            Funciones.MensajeDeAlerta(2, "Error", "Pin incorrecto");
+            throw new IllegalArgumentException("Pin incorrecto");
         }
-        
-        JOptionPane.showMessageDialog(null, "Pago efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
+
+        JOptionPane.showMessageDialog(null, "Pago efectivisado sin problemas ", "Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    /* Metodo que se encarga de cargar los servicios */
+    private void cargarServicios() {
+        DeudaCombo.removeAllItems();
+        DeudaCombo.addItem("Seleccionar");
+        ServicioAPagar = Com.getServicios();
+        for (Servicio servicio : ServicioAPagar) {
+            DeudaCombo.addItem(servicio.getNombre());
+        }
     }
 
 }
