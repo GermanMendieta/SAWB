@@ -279,7 +279,7 @@ public class Deposito extends javax.swing.JDialog {
         if (User.validaPinTr(Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr))) ) ) {
             Debito cuentaReceptora = Com.getCuentaDebitoPorIDCuenta(Integer.parseInt(cuenta));
             for (Debito debito : this.debitos) {
-                if (debito.getCuenta() == Integer.parseInt(cuenta) && cuentaReceptora != null) {
+                if (debito.getCuenta() == Integer.parseInt(cuenta) && cuentaReceptora != null && monto > 1000) {
                     debito.cargarMonto(monto);
                     Funciones.actualizarSaldo(debito.getMonto()+" gs.");
                 } else {

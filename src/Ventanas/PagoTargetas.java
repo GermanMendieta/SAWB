@@ -300,7 +300,7 @@ public class PagoTargetas extends javax.swing.JDialog {
 
     private void ConsultarDeudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarDeudaActionPerformed
         if (DeudaCombo.getSelectedIndex() > 0) {
-            aPagar.setText(((DeudaCombo.getSelectedIndex()*3 + 10)*1000000) + "  gs.");
+            aPagar.setText(((DeudaCombo.getSelectedIndex()*3 + 10)*10000) + "  gs.");
         }
     }//GEN-LAST:event_ConsultarDeudaActionPerformed
 

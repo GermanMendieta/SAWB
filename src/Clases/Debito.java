@@ -23,11 +23,15 @@ public class Debito extends Cuenta {
     }
     
     public void cargarMonto(int monto) {
-        this.monto += monto;
+        if (monto > 0) {
+            this.monto += monto;
+        } else {
+            throw new UnsupportedOperationException("Monto incorrecto");
+        }
     }
     
     public void quitarMonto(int monto) throws Exception {
-        if (this.monto - monto < 0) {
+        if (this.monto - monto < 0 && monto > 0) {
             throw new UnsupportedOperationException("Monto insuficiente");
         }
         

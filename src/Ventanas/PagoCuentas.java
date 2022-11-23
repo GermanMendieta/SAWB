@@ -302,7 +302,7 @@ public class PagoCuentas extends javax.swing.JDialog {
 
     private void ConsultarDeudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarDeudaActionPerformed
         if (DeudaCombo.getSelectedIndex() > 0) {
-            aPagar.setText(((DeudaCombo.getSelectedIndex() * 7 + 10) * 23000) + "  gs.");
+            aPagar.setText(((DeudaCombo.getSelectedIndex() * 3 + 10) * 23000) + "  gs.");
             ServicioSelected = ServicioAPagar[DeudaCombo.getSelectedIndex() - 1];
         } else {
             ServicioSelected = null;
