@@ -25,6 +25,12 @@ public class Funciones {
         actual.dispose();
     }
 
+    /*
+     ___________________________________________________________________________________
+    |                                                                                   |
+    |    Funcion que facilita la actualizacion del menu                                 |
+    |___________________________________________________________________________________|
+     */
     public static void setLabelMenuSaldo(JLabel saldoMenu) {
         Funciones.saldoMenu = saldoMenu;
     }

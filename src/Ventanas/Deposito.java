@@ -274,14 +274,11 @@ public class Deposito extends javax.swing.JDialog {
                 }
             }
             JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
-//            Funciones.MensajeDeAlerta(3, "Atencion", String.format("%s%s%s", cuenta, monto, ""));
-            // TODO reporte
-            
+         
             
             
             
         } else {
-//            Funciones.MensajeDeAlerta(2, "Error", "Pin incorrecto");
             throw new IllegalArgumentException("Pin incorrecto");
         }
         

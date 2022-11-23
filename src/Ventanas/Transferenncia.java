@@ -297,9 +297,7 @@ public class Transferenncia extends javax.swing.JDialog {
             Aqui deberia ir la inserccion en la base de datos
         */
         if (User.validaPinTr(Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr))))) {
-            if (monto > 25000000) {
-                throw new UnsupportedOperationException("Saldo insuficiente");
-            }
+            
             
             
             // TODO reporte
@@ -316,9 +314,8 @@ public class Transferenncia extends javax.swing.JDialog {
                     Transferencias transferencia = new Transferencias(debito, cuentaReceptora);
                     
                     Con.agregarTransferencia(transferencia);
-                    
-                    System.out.println("Cuenta emisora: " + debito.getMonto());
-                    System.out.println("Cuenta receptora: " + cuentaReceptora.getMonto());
+                    /* se actualiza el menu */
+                    Funciones.actualizarSaldo(debito.getMonto()+" gs.");
                 }
             }
             

@@ -1,5 +1,7 @@
 package Clases;
 
+import javax.naming.OperationNotSupportedException;
+
 /**
  *
  * @author Giuliano
@@ -26,7 +28,7 @@ public class Debito extends Cuenta {
     
     public void quitarMonto(int monto) throws Exception {
         if (this.monto - monto < 0) {
-            throw new Exception("Monto insuficiente");
+            throw new UnsupportedOperationException("Monto insuficiente");
         }
         
         this.monto -= monto;
