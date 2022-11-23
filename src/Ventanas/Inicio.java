@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import Clases.*;
 import Recursos.SimuladorDB;
+import java.util.Arrays;
 
 /**
  *
@@ -636,7 +637,7 @@ public class Inicio extends javax.swing.JFrame {
         Cuenta[] cuentasCliente = Con.getCuentas(Usuario);
         Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
         
-        Ventanas.Deposito.main(null, Usuario, this, debitosCliente);
+        Ventanas.Deposito.main(null, Usuario, this, debitosCliente, cuentaSaldo);
     }//GEN-LAST:event_rSButtonMetro1ActionPerformed
 
     private void rSButtonMetro6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro6ActionPerformed
@@ -784,8 +785,6 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     private Cliente validarUser() {
-        System.out.println(nom.getText());
-        System.out.println(id.getText());
         if (nom.getText().compareTo("") != 0 || id.getText().compareTo("") != 0) {
             return Con.ValidarUser(nom.getText(), encriptar.Encriptar(Integer.parseInt(id.getText())));
         }
@@ -794,7 +793,10 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     private void cargarCuenta() {
-//        Con.GetSaldoCliente(Usuario);
+        Debito[] Debitos = Con.getCuentasDebitos(Con.getCuentas(Usuario));
+        if (Debitos.length >= 1) {
+            cuentaSaldo.setText(Debitos[0].getMonto()+" gs.");
+        }
     }
 
 }
