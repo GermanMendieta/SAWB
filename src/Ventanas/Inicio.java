@@ -661,7 +661,7 @@ public class Inicio extends javax.swing.JFrame {
         Cuenta[] cuentasCliente = Con.getCuentas(Usuario);
         Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
 
-        Ventanas.Deposito.main(null, Usuario, this, debitosCliente, cuentaSaldo);
+        Ventanas.Deposito.main(null, Usuario, this, debitosCliente,Con ,cuentaSaldo);
     }//GEN-LAST:event_DepositarButtomActionPerformed
 
     private void PagoServiceButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagoServiceButtomActionPerformed

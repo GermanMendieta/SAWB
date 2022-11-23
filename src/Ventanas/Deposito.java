@@ -10,6 +10,7 @@ import Clases.Funciones;
 import Clases.Validar;
 import Clases.Debito;
 import Clases.encriptar;
+import Recursos.BaseDeDatos;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,7 +28,8 @@ public class Deposito extends javax.swing.JDialog {
     JFrame Menu;
     Debito[] debitos;
     JLabel Saldo;
-    public Deposito(Cliente User, JFrame menu, Debito[] debitos, JLabel SaldoLabel ){
+    BaseDeDatos Com;
+    public Deposito(Cliente User, JFrame menu, Debito[] debitos, BaseDeDatos com, JLabel SaldoLabel ){
         /*
             Configuramos la ventana  
          */
@@ -39,6 +41,7 @@ public class Deposito extends javax.swing.JDialog {
         this.User = User;
         this.Menu = menu;
         this.debitos = debitos;
+        this.Com = com;
         this.Saldo = SaldoLabel;
         initComponents();
     }
@@ -241,12 +244,12 @@ public class Deposito extends javax.swing.JDialog {
      * @param debitos
      * @param labelSaldo
      */
-    public static void main(String args[], Cliente Usuario, Inicio VentanaAnterior, Debito[] debitos, JLabel labelSaldo) {
+    public static void main(String args[], Cliente Usuario, Inicio VentanaAnterior, Debito[] debitos, BaseDeDatos con, JLabel labelSaldo) {
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Deposito(Usuario, VentanaAnterior, debitos, labelSaldo).setVisible(true);
+                new Deposito(Usuario, VentanaAnterior, debitos, con, labelSaldo).setVisible(true);
             }
         });
     }
@@ -273,12 +276,14 @@ public class Deposito extends javax.swing.JDialog {
         /*
             Aqui deberia ir la inserccion en la base de datos
         */ 
-        if (User.validaPinTr(Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr))))) {
-            
+        if (User.validaPinTr(Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr))) ) ) {
+            Debito cuentaReceptora = Com.getCuentaDebitoPorIDCuenta(Integer.parseInt(cuenta));
             for (Debito debito : this.debitos) {
-                if (debito.getCuenta() == Integer.parseInt(cuenta)) {
+                if (debito.getCuenta() == Integer.parseInt(cuenta) && cuentaReceptora != null) {
                     debito.cargarMonto(monto);
                     Funciones.actualizarSaldo(debito.getMonto()+" gs.");
+                } else {
+                    throw new IllegalArgumentException("Error en inserccion de campos");
                 }
             }
             JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
