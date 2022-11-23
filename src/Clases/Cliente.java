@@ -1,5 +1,7 @@
 package Clases;
 
+import Recursos.SimuladorDB;
+
 /**
  *
  * @author Grupo 4
@@ -41,12 +43,16 @@ public class Cliente {
         }
     }
 
-    boolean validaPinC(PinCuenta pinC) {
+    public boolean validaPinC(PinCuenta pinC) {
         return pinCuenta.validarPin(pinC.Pin);
     }
 
-    boolean validaPinTr(PinTransaccional pinTr) {
+    public boolean validaPinTr(PinTransaccional pinTr) {
         return pinTrans.validarPin(pinTr.Pin);
     }
-
+    
+    public boolean validaPinTr(int pinTr) {
+        return pinTrans.validarPin(pinTr);
+    }
+    
 }

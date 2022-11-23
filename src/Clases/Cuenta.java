@@ -18,6 +18,12 @@ public class Cuenta {
         return cliente.validarUsuario(nombre, Integer.parseInt(pin));
     }
 
-    
+    public Cliente getCliente() {
+        return this.cliente;
+    }
+
+    public int getID() {
+        return this.id;
+    }
     
 }
