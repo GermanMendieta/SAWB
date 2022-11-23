@@ -2,6 +2,7 @@ package Clases;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -10,16 +11,28 @@ import javax.swing.JTextField;
  * @author Grupo 4
  */
 public class Funciones {
-    
+
+    public static JLabel saldoMenu;
+
     /*
      ___________________________________________________________________________________
     |                                                                                   |
     |    Funcion que facilita la salidad de un dialogo hacia el Menu                    |
     |___________________________________________________________________________________|
-    */
+     */
     public static void salir(JDialog actual, JFrame Menu) {
         Menu.setVisible(true);
         actual.dispose();
+    }
+
+    public static void setLabelMenuSaldo(JLabel saldoMenu) {
+        Funciones.saldoMenu = saldoMenu;
+    }
+
+    public static void actualizarSaldo(String datos) {
+        if (Funciones.saldoMenu != null) {
+            Funciones.saldoMenu.setText(datos);
+        }
     }
 
     /**
@@ -33,7 +46,9 @@ public class Funciones {
         // se pregunta al usuario si quiere salir y si es asi se cierra la ventana
         int r = JOptionPane.showConfirmDialog(null, "Seguro que desea cancelar la operacion", "Atencion", JOptionPane.OK_CANCEL_OPTION);
         if ((r == JOptionPane.YES_OPTION)) {
-            Actual.dispose();
+            if (Actual != null) {
+                Actual.dispose();
+            }
             Anterior.setVisible(true);
         }
     }

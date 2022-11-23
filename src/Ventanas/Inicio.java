@@ -26,7 +26,7 @@ public class Inicio extends javax.swing.JFrame {
     boolean passVisible;
     Cliente Usuario;
     Cuenta CuentaU;
-    
+
     SimuladorDB Con;
 
     /**
@@ -39,9 +39,9 @@ public class Inicio extends javax.swing.JFrame {
        |                                                                                   |
        |    Llamamos a la funcion que se enecarga de configurar la ventana                 |
        |___________________________________________________________________________________|
-        */
+         */
         configurarVentana();
-        
+
         /*
         ______________________________________
        |                                      |
@@ -50,6 +50,7 @@ public class Inicio extends javax.swing.JFrame {
          */
         Con = new SimuladorDB();
         logger();
+
     }
 
     /**
@@ -597,8 +598,8 @@ public class Inicio extends javax.swing.JFrame {
         this.Usuario = validarUser();
         if (this.Usuario != null) {
             Loging.dispose();
-            
             cargarCuenta();
+            Funciones.setLabelMenuSaldo(cuentaSaldo);
         } else {
             LoginError.setVisible(true);
         }
@@ -633,10 +634,10 @@ public class Inicio extends javax.swing.JFrame {
             Abre la ventana para hacer deposito
          */
         this.setVisible(false);
-        
+
         Cuenta[] cuentasCliente = Con.getCuentas(Usuario);
         Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
-        
+
         Ventanas.Deposito.main(null, Usuario, this, debitosCliente, cuentaSaldo);
     }//GEN-LAST:event_rSButtonMetro1ActionPerformed
 
@@ -653,10 +654,10 @@ public class Inicio extends javax.swing.JFrame {
             Se abre la ventana de transferencia bancaria
          */
         this.setVisible(false);
-        
+
         Cuenta[] cuentasCliente = Con.getCuentas(Usuario);
         Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
-        
+
         Ventanas.Transferenncia.main(null, Usuario, this, debitosCliente, Con);
     }//GEN-LAST:event_rSButtonMetro2ActionPerformed
 
@@ -675,7 +676,7 @@ public class Inicio extends javax.swing.JFrame {
     private void rSButtonMetro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro4ActionPerformed
         /*
             Se abre la ventana de pago de targetas
-        */
+         */
         this.setVisible(false);
         Ventanas.PagoTargetas.main(null, Usuario, this);
     }//GEN-LAST:event_rSButtonMetro4ActionPerformed
@@ -792,14 +793,14 @@ public class Inicio extends javax.swing.JFrame {
         if (nom.getText().compareTo("") != 0 || id.getText().compareTo("") != 0) {
             return Con.ValidarUser(nom.getText(), encriptar.Encriptar(Integer.parseInt(id.getText())));
         }
-        
+
         return null;
     }
 
     private void cargarCuenta() {
         Debito[] Debitos = Con.getCuentasDebitos(Con.getCuentas(Usuario));
         if (Debitos.length >= 1) {
-            cuentaSaldo.setText(Debitos[0].getMonto()+" gs.");
+            cuentaSaldo.setText(Debitos[0].getMonto() + " gs.");
         }
     }
 

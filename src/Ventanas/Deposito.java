@@ -270,7 +270,7 @@ public class Deposito extends javax.swing.JDialog {
             for (Debito debito : this.debitos) {
                 if (debito.getCuenta() == Integer.parseInt(cuenta)) {
                     debito.cargarMonto(monto);
-                    this.Saldo.setText(debito.getMonto()+"gs.");
+                    Funciones.actualizarSaldo(debito.getMonto()+" gs.");
                 }
             }
             JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
