@@ -11,6 +11,7 @@ import Clases.Validar;
 import Clases.Debito;
 import Clases.encriptar;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,8 +26,8 @@ public class Deposito extends javax.swing.JDialog {
     Cliente User;
     JFrame Menu;
     Debito[] debitos;
-    
-    public Deposito(Cliente User, JFrame menu, Debito[] debitos) {
+    JLabel Saldo;
+    public Deposito(Cliente User, JFrame menu, Debito[] debitos, JLabel SaldoLabel ){
         /*
             Configuramos la ventana  
          */
@@ -38,7 +39,7 @@ public class Deposito extends javax.swing.JDialog {
         this.User = User;
         this.Menu = menu;
         this.debitos = debitos;
-        
+        this.Saldo = SaldoLabel;
         initComponents();
     }
 
@@ -229,12 +230,12 @@ public class Deposito extends javax.swing.JDialog {
      * @param Usuario
      * @param VentanaAnterior
      */
-    public static void main(String args[], Cliente Usuario, Inicio VentanaAnterior, Debito[] debitos) {
+    public static void main(String args[], Cliente Usuario, Inicio VentanaAnterior, Debito[] debitos, JLabel labelSaldo) {
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Deposito(Usuario, VentanaAnterior, debitos).setVisible(true);
+                new Deposito(Usuario, VentanaAnterior, debitos, labelSaldo).setVisible(true);
             }
         });
     }
@@ -266,16 +267,17 @@ public class Deposito extends javax.swing.JDialog {
                 throw new UnsupportedOperationException("Saldo insuficiente");
             }
             
+            for (Debito debito : this.debitos) {
+                if (debito.getCuenta() == Integer.parseInt(cuenta)) {
+                    debito.cargarMonto(monto);
+                    this.Saldo.setText(debito.getMonto()+"gs.");
+                }
+            }
             JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
 //            Funciones.MensajeDeAlerta(3, "Atencion", String.format("%s%s%s", cuenta, monto, ""));
             // TODO reporte
             
-            for (Debito debito : this.debitos) {
-                if (debito.getCuenta() == Integer.parseInt(cuenta)) {
-                    debito.cargarMonto(monto);
-                    System.out.println(debito.getMonto());
-                }
-            }
+            
             
             
         } else {
