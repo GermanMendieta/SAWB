@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  * @author Grupo 4
  */
-public class SimuladorDB {
+public class BaseDeDatos {
 
     private Cliente[] Clientes;
     private Cuenta[] Cuentas;
@@ -20,7 +20,7 @@ public class SimuladorDB {
     private ArrayList<TarjetaDeCredito> PagoTargetas;
     private ArrayList<PagoServicio> PagoServicio;
 
-    public SimuladorDB() {
+    public BaseDeDatos() {
         this.Clientes = new Cliente[]{
             new Cliente(1, "admin", Integer.parseInt(encriptar.Encriptar(12345)), Integer.parseInt(encriptar.Encriptar(12345)) ),
             new Cliente(2, "UserB", Integer.parseInt(encriptar.Encriptar(56789)), Integer.parseInt(encriptar.Encriptar(12345)) )

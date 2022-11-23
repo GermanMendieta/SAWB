@@ -1,6 +1,6 @@
 package Clases;
 
-import Recursos.SimuladorDB;
+import Recursos.BaseDeDatos;
 
 /**
  *

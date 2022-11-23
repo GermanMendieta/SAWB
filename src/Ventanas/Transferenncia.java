@@ -11,7 +11,7 @@ import Clases.Funciones;
 import Clases.Transferencias;
 import Clases.Validar;
 import Clases.encriptar;
-import Recursos.SimuladorDB;
+import Recursos.BaseDeDatos;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -27,9 +27,9 @@ public class Transferenncia extends javax.swing.JDialog {
     Cliente User;
     JFrame Menu;
     Debito[] debitos;
-    SimuladorDB Con;
+    BaseDeDatos Con;
 
-    public Transferenncia(Cliente User, JFrame menu, Debito[] debitosCliente, SimuladorDB Con) {
+    public Transferenncia(Cliente User, JFrame menu, Debito[] debitosCliente, BaseDeDatos Con) {
         /*
             Configuramos la ventana  
          */
@@ -241,7 +241,7 @@ public class Transferenncia extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[], Cliente Usuario, JFrame ventanaAnterior, Debito[] debitosCliente, SimuladorDB Con) {
+    public static void main(String args[], Cliente Usuario, JFrame ventanaAnterior, Debito[] debitosCliente, BaseDeDatos Con) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

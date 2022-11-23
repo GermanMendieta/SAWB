@@ -8,7 +8,7 @@ package Ventanas;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import Clases.*;
-import Recursos.SimuladorDB;
+import Recursos.BaseDeDatos;
 import java.util.Arrays;
 
 /**
@@ -27,7 +27,7 @@ public class Inicio extends javax.swing.JFrame {
     Cliente Usuario;
     Cuenta CuentaU;
 
-    SimuladorDB Con;
+    BaseDeDatos Con;
 
     /**
      * Creates new form Inicio
@@ -48,7 +48,7 @@ public class Inicio extends javax.swing.JFrame {
        |       login del usuario              |
        |______________________________________|
          */
-        Con = new SimuladorDB();
+        Con = new BaseDeDatos();
         logger();
 
     }
