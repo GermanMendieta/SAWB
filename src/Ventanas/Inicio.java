@@ -650,7 +650,11 @@ public class Inicio extends javax.swing.JFrame {
             Se abre la ventana de transferencia bancaria
          */
         this.setVisible(false);
-        Ventanas.Transferenncia.main(null, Usuario, this);
+        
+        Cuenta[] cuentasCliente = Con.getCuentas(Usuario);
+        Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
+        
+        Ventanas.Transferenncia.main(null, Usuario, this, debitosCliente, Con);
     }//GEN-LAST:event_rSButtonMetro2ActionPerformed
 
     private void rSButtonMetro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro3ActionPerformed

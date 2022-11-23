@@ -109,4 +109,15 @@ public class SimuladorDB {
         
         return respuesta;
     }
+    
+    public Debito getCuentaDebitoPorIDCuenta(int id) {
+        for (Debito debito : Debitos) {
+            if (debito.getCuenta() == id) {
+                return debito;
+            }
+        }
+        
+        return null;
+    }
+    
 }

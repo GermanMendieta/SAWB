@@ -6,8 +6,11 @@
 package Ventanas;
 
 import Clases.Cliente;
+import Clases.Debito;
 import Clases.Funciones;
 import Clases.Validar;
+import Clases.encriptar;
+import Recursos.SimuladorDB;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -22,8 +25,10 @@ public class Transferenncia extends javax.swing.JDialog {
      */
     Cliente User;
     JFrame Menu;
+    Debito[] debitos;
+    SimuladorDB Con;
 
-    public Transferenncia(Cliente User, JFrame menu) {
+    public Transferenncia(Cliente User, JFrame menu, Debito[] debitosCliente, SimuladorDB Con) {
         /*
             Configuramos la ventana  
          */
@@ -34,6 +39,9 @@ public class Transferenncia extends javax.swing.JDialog {
 
         this.User = User;
         this.Menu = menu;
+        this.debitos = debitosCliente;
+        this.Con = Con;
+        
         initComponents();
     }
 
@@ -50,13 +58,15 @@ public class Transferenncia extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         Transferir = new rojerusan.RSButtonMetro();
         jPanel2 = new javax.swing.JPanel();
-        Cuenta = new rojerusan.RSMetroTextPlaceHolder();
+        CuentaReceptora = new rojerusan.RSMetroTextPlaceHolder();
         Monto = new rojerusan.RSMetroTextPlaceHolder();
         PinTr = new rojerusan.RSMetroTextPlaceHolder();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         cancelar = new rojerusan.RSButtonMetro();
+        jLabel5 = new javax.swing.JLabel();
+        CuentaEmisora = new rojerusan.RSMetroTextPlaceHolder();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -78,13 +88,13 @@ public class Transferenncia extends javax.swing.JDialog {
                 TransferirActionPerformed(evt);
             }
         });
-        jPanel1.add(Transferir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 310, 60));
+        jPanel1.add(Transferir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, 310, 60));
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
-        Cuenta.addActionListener(new java.awt.event.ActionListener() {
+        CuentaReceptora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CuentaActionPerformed(evt);
+                CuentaReceptoraActionPerformed(evt);
             }
         });
 
@@ -126,7 +136,7 @@ public class Transferenncia extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(PinTr, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                     .addComponent(Monto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Cuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(CuentaReceptora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -135,7 +145,7 @@ public class Transferenncia extends javax.swing.JDialog {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Cuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                    .addComponent(CuentaReceptora, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Monto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,7 +157,7 @@ public class Transferenncia extends javax.swing.JDialog {
                 .addGap(32, 32, 32))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 680, 270));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 680, 270));
 
         cancelar.setBackground(new java.awt.Color(102, 102, 102));
         cancelar.setForeground(new java.awt.Color(0, 0, 0));
@@ -158,7 +168,19 @@ public class Transferenncia extends javax.swing.JDialog {
                 cancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 170, 60));
+        jPanel1.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, 170, 60));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Cuenta Emisora :");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 205, 50));
+
+        CuentaEmisora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CuentaEmisoraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CuentaEmisora, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 340, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,17 +190,15 @@ public class Transferenncia extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuentaActionPerformed
+    private void CuentaReceptoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuentaReceptoraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CuentaActionPerformed
+    }//GEN-LAST:event_CuentaReceptoraActionPerformed
 
     private void PinTrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PinTrActionPerformed
         // TODO add your handling code here:
@@ -192,11 +212,13 @@ public class Transferenncia extends javax.swing.JDialog {
         /*
             Boton de tranferencia
         */
-        boolean DatosValidos = Validar.camposVacios(new String[]{Cuenta.getText(), Monto.getText(), PinTr.getText()});
+        boolean DatosValidos = Validar.camposVacios(new String[]{CuentaReceptora.getText(), Monto.getText(), PinTr.getText()});
         if (DatosValidos) {
             try {
-                EfectivisarTransferencia(Cuenta.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText());
+                EfectivisarTransferencia(CuentaEmisora.getText(), CuentaReceptora.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText());
                 Funciones.salir(this, Menu);
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(null, "Pin incorrecto", "Error", JOptionPane.OK_OPTION);
             } catch (UnsupportedOperationException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Atencion", JOptionPane.OK_OPTION);
             } catch (Exception ex) {
@@ -211,10 +233,14 @@ public class Transferenncia extends javax.swing.JDialog {
         Funciones.deseaSalir(this, Menu);;
     }//GEN-LAST:event_cancelarActionPerformed
 
+    private void CuentaEmisoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuentaEmisoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CuentaEmisoraActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[], Cliente Usuario, JFrame ventanaAnterior) {
+    public static void main(String args[], Cliente Usuario, JFrame ventanaAnterior, Debito[] debitosCliente, SimuladorDB Con) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -242,13 +268,14 @@ public class Transferenncia extends javax.swing.JDialog {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Transferenncia(Usuario, ventanaAnterior).setVisible(true);
+                new Transferenncia(Usuario, ventanaAnterior, debitosCliente, Con).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojerusan.RSMetroTextPlaceHolder Cuenta;
+    private rojerusan.RSMetroTextPlaceHolder CuentaEmisora;
+    private rojerusan.RSMetroTextPlaceHolder CuentaReceptora;
     private rojerusan.RSMetroTextPlaceHolder Monto;
     private rojerusan.RSMetroTextPlaceHolder PinTr;
     private rojerusan.RSButtonMetro Transferir;
@@ -257,21 +284,42 @@ public class Transferenncia extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 
     
     // se debe efectivisar la transferencia de dinero
-    private void EfectivisarTransferencia(String cuenta, int monto, String pinTr) throws Exception {
+    private void EfectivisarTransferencia(String cuentaEmisoraID, String cuentaReceptoraID, int monto, String pinTr) throws Exception {
         /*
             Aqui deberia ir la inserccion en la base de datos
         */
-        if (monto > 25000000) {
-            throw new UnsupportedOperationException("Saldo insuficiente");
+        if (User.validaPinTr(Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr))))) {
+            if (monto > 25000000) {
+                throw new UnsupportedOperationException("Saldo insuficiente");
+            }
+            
+            JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
+            // TODO reporte
+            
+            for (Debito debito : this.debitos) {
+                if (debito.getCuenta() == Integer.parseInt(cuentaEmisoraID)) {
+                    Debito cuentaReceptora = Con.getCuentaDebitoPorIDCuenta(Integer.parseInt(cuentaReceptoraID));
+                    
+                    debito.quitarMonto(monto);
+                    cuentaReceptora.cargarMonto(monto);
+                    
+                    System.out.println("Cuenta emisora: " + debito.getMonto());
+                    System.out.println("Cuenta receptora: " + cuentaReceptora.getMonto());
+                }
+            }
+            
+            
+        } else {
+//            Funciones.MensajeDeAlerta(2, "Error", "Pin incorrecto");
+            throw new IllegalArgumentException("Pin incorrecto");
         }
-        Funciones.MensajeDeAlerta(3, "Atencion", String.format("%s%s%s", cuenta, monto, ""));
-        JOptionPane.showMessageDialog(null, "Transferencia de dinero completa","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
     }
 
 }
