@@ -331,21 +331,38 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Transferir"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Saldo"/>
+                <Property name="text" type="java.lang.String" value="Pago Targetas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+4"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Pagar"/>
+                <Property name="text" type="java.lang.String" value="Saldo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+5"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Pago Servicios"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
@@ -445,13 +462,13 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="rSButtonMetro3" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="ConusltaSaldoButtom" min="-2" pref="240" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="rSButtonMetro4" pref="240" max="32767" attributes="0"/>
-                                      <Component id="rSButtonMetro2" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="rSButtonMetro1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="PagoTarjetButtom" pref="240" max="32767" attributes="0"/>
+                                      <Component id="TransferenciaButtom" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="DepositarButtom" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="rSButtonMetro6" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="PagoServiceButtom" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -465,26 +482,26 @@
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel5" pref="81" max="32767" attributes="0"/>
-                          <Component id="rSButtonMetro1" pref="0" max="32767" attributes="0"/>
+                          <Component id="DepositarButtom" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel6" min="-2" pref="75" max="-2" attributes="0"/>
-                          <Component id="rSButtonMetro2" min="-2" pref="81" max="-2" attributes="0"/>
+                          <Component id="TransferenciaButtom" min="-2" pref="81" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="rSButtonMetro4" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="PagoTarjetButtom" alignment="0" pref="0" max="32767" attributes="0"/>
                           <Component id="jLabel10" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="rSButtonMetro3" pref="0" max="32767" attributes="0"/>
+                          <Component id="ConusltaSaldoButtom" pref="0" max="32767" attributes="0"/>
                           <Component id="jLabel7" min="-2" pref="74" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="rSButtonMetro6" min="-2" pref="72" max="-2" attributes="0"/>
+                          <Component id="PagoServiceButtom" min="-2" pref="72" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="52" max="32767" attributes="0"/>
@@ -498,7 +515,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="rojerusan.RSButtonMetro" name="rSButtonMetro2">
+            <Component class="rojerusan.RSButtonMetro" name="TransferenciaButtom">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Transferencia"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -509,10 +526,10 @@
                 <Property name="iconTextGap" type="int" value="10"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonMetro2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TransferenciaButtomActionPerformed"/>
               </Events>
             </Component>
-            <Component class="rojerusan.RSButtonMetro" name="rSButtonMetro1">
+            <Component class="rojerusan.RSButtonMetro" name="DepositarButtom">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Deposito De Cuenta"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -523,10 +540,10 @@
                 <Property name="iconTextGap" type="int" value="10"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonMetro1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DepositarButtomActionPerformed"/>
               </Events>
             </Component>
-            <Component class="rojerusan.RSButtonMetro" name="rSButtonMetro3">
+            <Component class="rojerusan.RSButtonMetro" name="ConusltaSaldoButtom">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar Saldo"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -537,7 +554,7 @@
                 <Property name="iconTextGap" type="int" value="10"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonMetro3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConusltaSaldoButtomActionPerformed"/>
               </Events>
             </Component>
             <Component class="rojerusan.RSButtonMetro" name="rSButtonMetro5">
@@ -557,7 +574,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonMetro5ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="rojerusan.RSButtonMetro" name="rSButtonMetro6">
+            <Component class="rojerusan.RSButtonMetro" name="PagoServiceButtom">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pago de Servicios"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -568,7 +585,7 @@
                 <Property name="iconTextGap" type="int" value="10"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonMetro6ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PagoServiceButtomActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
@@ -619,9 +636,9 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="rojerusan.RSButtonMetro" name="rSButtonMetro4">
+            <Component class="rojerusan.RSButtonMetro" name="PagoTarjetButtom">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Pago de Targetas"/>
+                <Property name="text" type="java.lang.String" value="Pago de Tarjetas"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Microsoft YaHei UI" size="18" style="1"/>
                 </Property>
@@ -630,7 +647,7 @@
                 <Property name="iconTextGap" type="int" value="10"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonMetro4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PagoTarjetButtomActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

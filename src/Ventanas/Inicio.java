@@ -78,18 +78,18 @@ public class Inicio extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        rSButtonMetro2 = new rojerusan.RSButtonMetro();
-        rSButtonMetro1 = new rojerusan.RSButtonMetro();
-        rSButtonMetro3 = new rojerusan.RSButtonMetro();
+        TransferenciaButtom = new rojerusan.RSButtonMetro();
+        DepositarButtom = new rojerusan.RSButtonMetro();
+        ConusltaSaldoButtom = new rojerusan.RSButtonMetro();
         rSButtonMetro5 = new rojerusan.RSButtonMetro();
-        rSButtonMetro6 = new rojerusan.RSButtonMetro();
+        PagoServiceButtom = new rojerusan.RSButtonMetro();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        rSButtonMetro4 = new rojerusan.RSButtonMetro();
+        PagoTarjetButtom = new rojerusan.RSButtonMetro();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -104,6 +104,7 @@ public class Inicio extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
 
@@ -284,36 +285,36 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setForeground(new java.awt.Color(0, 0, 51));
 
-        rSButtonMetro2.setText("Transferencia");
-        rSButtonMetro2.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
-        rSButtonMetro2.setGrosorLinea(10);
-        rSButtonMetro2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        rSButtonMetro2.setIconTextGap(10);
-        rSButtonMetro2.addActionListener(new java.awt.event.ActionListener() {
+        TransferenciaButtom.setText("Transferencia");
+        TransferenciaButtom.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        TransferenciaButtom.setGrosorLinea(10);
+        TransferenciaButtom.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        TransferenciaButtom.setIconTextGap(10);
+        TransferenciaButtom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro2ActionPerformed(evt);
+                TransferenciaButtomActionPerformed(evt);
             }
         });
 
-        rSButtonMetro1.setText("Deposito De Cuenta");
-        rSButtonMetro1.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
-        rSButtonMetro1.setGrosorLinea(10);
-        rSButtonMetro1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        rSButtonMetro1.setIconTextGap(10);
-        rSButtonMetro1.addActionListener(new java.awt.event.ActionListener() {
+        DepositarButtom.setText("Deposito De Cuenta");
+        DepositarButtom.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        DepositarButtom.setGrosorLinea(10);
+        DepositarButtom.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        DepositarButtom.setIconTextGap(10);
+        DepositarButtom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro1ActionPerformed(evt);
+                DepositarButtomActionPerformed(evt);
             }
         });
 
-        rSButtonMetro3.setText("Consultar Saldo");
-        rSButtonMetro3.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
-        rSButtonMetro3.setGrosorLinea(10);
-        rSButtonMetro3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        rSButtonMetro3.setIconTextGap(10);
-        rSButtonMetro3.addActionListener(new java.awt.event.ActionListener() {
+        ConusltaSaldoButtom.setText("Consultar Saldo");
+        ConusltaSaldoButtom.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        ConusltaSaldoButtom.setGrosorLinea(10);
+        ConusltaSaldoButtom.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        ConusltaSaldoButtom.setIconTextGap(10);
+        ConusltaSaldoButtom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro3ActionPerformed(evt);
+                ConusltaSaldoButtomActionPerformed(evt);
             }
         });
 
@@ -327,14 +328,14 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        rSButtonMetro6.setText("Pago de Servicios");
-        rSButtonMetro6.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
-        rSButtonMetro6.setGrosorLinea(10);
-        rSButtonMetro6.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        rSButtonMetro6.setIconTextGap(10);
-        rSButtonMetro6.addActionListener(new java.awt.event.ActionListener() {
+        PagoServiceButtom.setText("Pago de Servicios");
+        PagoServiceButtom.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        PagoServiceButtom.setGrosorLinea(10);
+        PagoServiceButtom.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        PagoServiceButtom.setIconTextGap(10);
+        PagoServiceButtom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro6ActionPerformed(evt);
+                PagoServiceButtomActionPerformed(evt);
             }
         });
 
@@ -356,14 +357,14 @@ public class Inicio extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/card-approve-icon.png"))); // NOI18N
 
-        rSButtonMetro4.setText("Pago de Targetas");
-        rSButtonMetro4.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
-        rSButtonMetro4.setGrosorLinea(10);
-        rSButtonMetro4.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        rSButtonMetro4.setIconTextGap(10);
-        rSButtonMetro4.addActionListener(new java.awt.event.ActionListener() {
+        PagoTarjetButtom.setText("Pago de Tarjetas");
+        PagoTarjetButtom.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        PagoTarjetButtom.setGrosorLinea(10);
+        PagoTarjetButtom.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        PagoTarjetButtom.setIconTextGap(10);
+        PagoTarjetButtom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButtonMetro4ActionPerformed(evt);
+                PagoTarjetButtomActionPerformed(evt);
             }
         });
 
@@ -387,12 +388,12 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rSButtonMetro3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ConusltaSaldoButtom, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(rSButtonMetro4, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                                .addComponent(rSButtonMetro2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rSButtonMetro1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(rSButtonMetro6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(PagoTarjetButtom, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                .addComponent(TransferenciaButtom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(DepositarButtom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(PagoServiceButtom, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -401,22 +402,22 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                    .addComponent(rSButtonMetro1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(DepositarButtom, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSButtonMetro2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TransferenciaButtom, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(rSButtonMetro4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(PagoTarjetButtom, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(rSButtonMetro3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(ConusltaSaldoButtom, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rSButtonMetro6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PagoServiceButtom, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -515,14 +516,33 @@ public class Inicio extends javax.swing.JFrame {
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText("Transferir");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem4);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem7.setText("Pago Targetas");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem7);
+
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem5.setText("Saldo");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem6.setText("Pagar");
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem6.setText("Pago Servicios");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -563,7 +583,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+        PagoServiceButtom.doClick();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void LogingWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_LogingWindowDeactivated
@@ -632,7 +652,7 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nomKeyPressed
 
-    private void rSButtonMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro1ActionPerformed
+    private void DepositarButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositarButtomActionPerformed
         /*
             Abre la ventana para hacer deposito
          */
@@ -642,9 +662,9 @@ public class Inicio extends javax.swing.JFrame {
         Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
 
         Ventanas.Deposito.main(null, Usuario, this, debitosCliente, cuentaSaldo);
-    }//GEN-LAST:event_rSButtonMetro1ActionPerformed
+    }//GEN-LAST:event_DepositarButtomActionPerformed
 
-    private void rSButtonMetro6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro6ActionPerformed
+    private void PagoServiceButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagoServiceButtomActionPerformed
         /*
             Se abre la ventana de pago de servicios
          */
@@ -652,9 +672,9 @@ public class Inicio extends javax.swing.JFrame {
         Cuenta[] cuentasCliente = Con.getCuentas(Usuario);
         Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
         Ventanas.PagoCuentas.main(null, Usuario, this, Con,debitosCliente);
-    }//GEN-LAST:event_rSButtonMetro6ActionPerformed
+    }//GEN-LAST:event_PagoServiceButtomActionPerformed
 
-    private void rSButtonMetro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro2ActionPerformed
+    private void TransferenciaButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransferenciaButtomActionPerformed
         /*
             Se abre la ventana de transferencia bancaria
          */
@@ -664,9 +684,9 @@ public class Inicio extends javax.swing.JFrame {
         Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
 
         Ventanas.Transferenncia.main(null, Usuario, this, debitosCliente, Con);
-    }//GEN-LAST:event_rSButtonMetro2ActionPerformed
+    }//GEN-LAST:event_TransferenciaButtomActionPerformed
 
-    private void rSButtonMetro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro3ActionPerformed
+    private void ConusltaSaldoButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConusltaSaldoButtomActionPerformed
         /*
             Se abre la ventana de consulta de cuenta bancaria
          */
@@ -675,13 +695,13 @@ public class Inicio extends javax.swing.JFrame {
         Cuenta[] cuentasCliente = Con.getCuentas(Usuario);
         Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
         Ventanas.ConsultaSaldo.main(null, Usuario, this, Con, debitosCliente);
-    }//GEN-LAST:event_rSButtonMetro3ActionPerformed
+    }//GEN-LAST:event_ConusltaSaldoButtomActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-
+        DepositarButtom.doClick();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void rSButtonMetro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro4ActionPerformed
+    private void PagoTarjetButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagoTarjetButtomActionPerformed
         /*
             Se abre la ventana de pago de targetas
          */
@@ -692,12 +712,24 @@ public class Inicio extends javax.swing.JFrame {
         Credito[] creditosCliente = Con.getCuentasCreditos(cuentasCliente);
         
         Ventanas.PagoTargetas.main(null, Usuario, this, debitosCliente, creditosCliente, Con);
-    }//GEN-LAST:event_rSButtonMetro4ActionPerformed
+    }//GEN-LAST:event_PagoTarjetButtomActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         this.setVisible(false);
         logger();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        TransferenciaButtom.doClick();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        ConusltaSaldoButtom.doClick();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        PagoTarjetButtom.doClick();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -736,12 +768,17 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonMetro AccesUser;
+    private rojerusan.RSButtonMetro ConusltaSaldoButtom;
+    private rojerusan.RSButtonMetro DepositarButtom;
     private javax.swing.JLabel LoginError;
     private javax.swing.JDialog Loging;
     private javax.swing.JLabel Nombre;
     private javax.swing.JLabel Nombre1;
     private javax.swing.JLabel Nombre4;
     private javax.swing.JLabel Nombre5;
+    private rojerusan.RSButtonMetro PagoServiceButtom;
+    private rojerusan.RSButtonMetro PagoTarjetButtom;
+    private rojerusan.RSButtonMetro TransferenciaButtom;
     private javax.swing.JLabel cuentaSaldo;
     private rojerusan.RSPasswordTextPlaceHolder id;
     private javax.swing.JLabel jLabel1;
@@ -766,18 +803,14 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private rojerusan.RSMetroTextPlaceHolder nom;
-    private rojerusan.RSButtonMetro rSButtonMetro1;
-    private rojerusan.RSButtonMetro rSButtonMetro2;
-    private rojerusan.RSButtonMetro rSButtonMetro3;
-    private rojerusan.RSButtonMetro rSButtonMetro4;
     private rojerusan.RSButtonMetro rSButtonMetro5;
-    private rojerusan.RSButtonMetro rSButtonMetro6;
     private rojerusan.RSButtonMetro ver;
     // End of variables declaration//GEN-END:variables
     /* Metodo que modifica la ventana para actual */
