@@ -5,7 +5,7 @@ package Clases;
  * @author Giuliano
  */
 public class PagoServicio extends Pagos {
-
+    static int cantidad;
     int Id;
     Servicio servicio;
     int monto;
@@ -17,9 +17,9 @@ public class PagoServicio extends Pagos {
         this.monto = monto;
     }
     
-    public PagoServicio(Pagos Pago, int Id, Servicio servicio, int monto) {
+    public PagoServicio(Pagos Pago, Servicio servicio, int monto) {
         super(Pago.id, Pago.cuentaDebito, Pago.pin);
-        this.Id = Id;
+        this.Id = ++cantidad;
         this.servicio = servicio;
         this.monto = monto;
     }

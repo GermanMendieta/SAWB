@@ -229,6 +229,8 @@ public class Deposito extends javax.swing.JDialog {
      * @param args the command line arguments
      * @param Usuario
      * @param VentanaAnterior
+     * @param debitos
+     * @param labelSaldo
      */
     public static void main(String args[], Cliente Usuario, Inicio VentanaAnterior, Debito[] debitos, JLabel labelSaldo) {
         

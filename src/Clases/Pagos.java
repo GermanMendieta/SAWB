@@ -15,11 +15,11 @@ public class Pagos {
         this.cuentaDebito = cuentaDebito;
         this.pin = pin;
     }
-    
+
     public Pagos(Debito cuentaDebito, PinTransaccional pin) {
         this.id = ++cantidad;
         this.cuentaDebito = cuentaDebito;
         this.pin = pin;
     }
-    
+
 }
