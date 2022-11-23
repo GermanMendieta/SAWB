@@ -5,6 +5,7 @@ package Clases;
  * @author Giuliano
  */
 public class Transferencias {
+    static int cantidad;
     int id;
     Debito emisor;
     Debito receptor;
@@ -15,5 +16,10 @@ public class Transferencias {
         this.receptor = receptor;
     }
     
+    public Transferencias(Debito emisor, Debito receptor) {
+        this.id = ++cantidad;
+        this.emisor = emisor;
+        this.receptor = receptor;
+    }
     
 }

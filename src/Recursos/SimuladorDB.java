@@ -120,4 +120,12 @@ public class SimuladorDB {
         return null;
     }
     
+    public void agregarTransferencia(Transferencias transferencias) {
+        Transferencias.add(transferencias);
+    }
+    
+    public ArrayList getTransferencias() {
+        return Transferencias;
+    }
+    
 }

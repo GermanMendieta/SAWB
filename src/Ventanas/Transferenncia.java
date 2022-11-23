@@ -8,6 +8,7 @@ package Ventanas;
 import Clases.Cliente;
 import Clases.Debito;
 import Clases.Funciones;
+import Clases.Transferencias;
 import Clases.Validar;
 import Clases.encriptar;
 import Recursos.SimuladorDB;
@@ -218,7 +219,7 @@ public class Transferenncia extends javax.swing.JDialog {
                 EfectivisarTransferencia(CuentaEmisora.getText(), CuentaReceptora.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText());
                 Funciones.salir(this, Menu);
             } catch (IllegalArgumentException ex) {
-                JOptionPane.showMessageDialog(null, "Pin incorrecto", "Error", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             } catch (UnsupportedOperationException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Atencion", JOptionPane.OK_OPTION);
             } catch (Exception ex) {
@@ -300,21 +301,32 @@ public class Transferenncia extends javax.swing.JDialog {
                 throw new UnsupportedOperationException("Saldo insuficiente");
             }
             
-            JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
+            
             // TODO reporte
             
+            Boolean existeCuenta = false;
             for (Debito debito : this.debitos) {
                 if (debito.getCuenta() == Integer.parseInt(cuentaEmisoraID)) {
+                    existeCuenta = true;
                     Debito cuentaReceptora = Con.getCuentaDebitoPorIDCuenta(Integer.parseInt(cuentaReceptoraID));
                     
                     debito.quitarMonto(monto);
                     cuentaReceptora.cargarMonto(monto);
+                    
+                    Transferencias transferencia = new Transferencias(debito, cuentaReceptora);
+                    
+                    Con.agregarTransferencia(transferencia);
                     
                     System.out.println("Cuenta emisora: " + debito.getMonto());
                     System.out.println("Cuenta receptora: " + cuentaReceptora.getMonto());
                 }
             }
             
+            if (!existeCuenta) {
+                throw new IllegalArgumentException("No existe la cuenta de usuario insertada");
+            }
+            
+            JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
             
         } else {
 //            Funciones.MensajeDeAlerta(2, "Error", "Pin incorrecto");
