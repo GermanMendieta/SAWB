@@ -110,6 +110,22 @@ public class BaseDeDatos {
         return respuesta;
     }
     
+    public Credito[] getCuentasCreditos(Cuenta[] cuentas) {
+        Credito[] respuesta = new Credito[cuentas.length];
+           
+        int i = 0;
+        for (Cuenta cuenta : cuentas) {
+            for (Credito credito : Creditos) {
+                if (credito.getCuenta() == cuenta.getID()) {
+                    respuesta[i++] = credito;
+                    break;
+                }
+            }
+        }
+        
+        return respuesta;
+    }
+    
     public Debito getCuentaDebitoPorIDCuenta(int id) {
         for (Debito debito : Debitos) {
             if (debito.getCuenta() == id) {
@@ -122,6 +138,11 @@ public class BaseDeDatos {
     
     public void agregarTransferencia(Transferencias transferencias) {
         Transferencias.add(transferencias);
+    }
+    
+    public void agregarPagoCredito(Pagos pago, TarjetaDeCredito tarjeta) {
+        Pago.add(pago);
+        PagoTargetas.add(tarjeta);
     }
     
     public ArrayList getTransferencias() {

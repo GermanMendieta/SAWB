@@ -5,6 +5,7 @@ package Clases;
  * @author Giuliano
  */
 public class TarjetaDeCredito extends Pagos {
+    static int cantidad;
     int Id;
     int monto;
     Credito cuentaCredito;
@@ -18,7 +19,7 @@ public class TarjetaDeCredito extends Pagos {
     
     public TarjetaDeCredito(Pagos Pago, int Id, int monto, Credito cuentaCredito) {
         super(Pago.id, Pago.cuentaDebito, Pago.pin);
-        this.Id = Id;
+        this.Id = ++cantidad;
         this.monto = monto;
         this.cuentaCredito = cuentaCredito;
     }

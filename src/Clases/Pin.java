@@ -5,7 +5,7 @@ package Clases;
  *
  * @author Grupo 4
  */
-interface Pin {
+public interface Pin {
     /*
         Interfaz que contiene la estructura general de un pin
     */

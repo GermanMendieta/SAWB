@@ -678,7 +678,12 @@ public class Inicio extends javax.swing.JFrame {
             Se abre la ventana de pago de targetas
          */
         this.setVisible(false);
-        Ventanas.PagoTargetas.main(null, Usuario, this);
+        
+        Cuenta[] cuentasCliente = Con.getCuentas(Usuario);
+        Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
+        Credito[] creditosCliente = Con.getCuentasCreditos(cuentasCliente);
+        
+        Ventanas.PagoTargetas.main(null, Usuario, this, debitosCliente, creditosCliente, Con);
     }//GEN-LAST:event_rSButtonMetro4ActionPerformed
 
     /**

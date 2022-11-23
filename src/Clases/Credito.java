@@ -14,4 +14,8 @@ public class Credito extends Cuenta {
     public Credito(Cuenta cuenta, int linea){
         super(cuenta.id, cuenta.cliente);
     }
+
+    public int getCuenta() {
+        return super.id;
+    }
 }

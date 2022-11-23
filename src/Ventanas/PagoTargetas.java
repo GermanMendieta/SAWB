@@ -6,8 +6,15 @@
 package Ventanas;
 
 import Clases.Cliente;
+import Clases.Credito;
+import Clases.Debito;
 import Clases.Funciones;
+import Clases.Pagos;
 import Clases.Validar;
+import Clases.encriptar;
+import Clases.PinTransaccional;
+import Clases.TarjetaDeCredito;
+import Recursos.BaseDeDatos;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -22,7 +29,11 @@ public class PagoTargetas extends javax.swing.JDialog {
      */
     Cliente User;
     JFrame Menu;
-    public PagoTargetas(Cliente User, JFrame Menu) {
+    Debito[] debitos;
+    Credito[] creditos;
+    BaseDeDatos Con;
+    
+    public PagoTargetas(Cliente User, JFrame Menu, Debito[] debitos, Credito[] creditos, BaseDeDatos Con) {
         /*
             Configuramos la ventana  
          */
@@ -33,8 +44,12 @@ public class PagoTargetas extends javax.swing.JDialog {
 
         this.User = User;
         this.Menu = Menu;
+        this.debitos = debitos;
+        this.creditos = creditos;
+        this.Con = Con;
         
         initComponents();
+        cargarCreditos();
     }
 
     /**
@@ -135,7 +150,7 @@ public class PagoTargetas extends javax.swing.JDialog {
 
         DeudaCombo.setForeground(new java.awt.Color(0, 0, 0));
         DeudaCombo.setMaximumRowCount(5);
-        DeudaCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar", "Targeta 1", "Targeta 2", "Targeta 3" }));
+        DeudaCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecionar" }));
         DeudaCombo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         DeudaCombo.setName(""); // NOI18N
         DeudaCombo.addActionListener(new java.awt.event.ActionListener() {
@@ -252,8 +267,10 @@ public class PagoTargetas extends javax.swing.JDialog {
         boolean DatosValidos = Validar.camposVacios(new String[]{Cuenta.getText(), Monto.getText(), PinTr.getText()}) && DeudaCombo.getSelectedIndex() > 0;
         if (DatosValidos) {
             try {
-                EfectivisarDeposito(Cuenta.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText());
+                EfectivisarDeposito(Cuenta.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText(), DeudaCombo.getSelectedItem().toString());
                 Funciones.salir(this, Menu);
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             } catch (UnsupportedOperationException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Atencion", JOptionPane.OK_OPTION);
             } catch (Exception ex) {
@@ -286,12 +303,12 @@ public class PagoTargetas extends javax.swing.JDialog {
      * @param args the command line arguments
      * @param Usuario
      */
-    public static void main(String args[], Cliente Usuario, JFrame VentanaAnterior) {
+    public static void main(String args[], Cliente Usuario, JFrame VentanaAnterior, Debito[] debitos, Credito[] creditos, BaseDeDatos Con) {
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PagoTargetas(Usuario, VentanaAnterior).setVisible(true);
+                new PagoTargetas(Usuario, VentanaAnterior, debitos, creditos, Con).setVisible(true);
             }
         });
     }
@@ -319,15 +336,47 @@ public class PagoTargetas extends javax.swing.JDialog {
 
     
     // se debe efectivisar el pago
-    private void EfectivisarDeposito(String cuenta, int monto, String pinTr) throws Exception {
+    private void EfectivisarDeposito(String cuenta, int monto, String pinTr, String tarjeta) throws Exception {
         /*
             Aqui deberia ir la inserccion en la base de datos
         */
-        if (monto > 2500000) {
-            throw new UnsupportedOperationException("Saldo insuficiente");
+        if (User.validaPinTr(Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr))))) {    
+            // TODO reporte
+            
+            Boolean existeCuenta = false;
+            for (Debito debito : this.debitos) {
+                if (debito.getCuenta() == Integer.parseInt(cuenta)) {
+                    for (Credito credito : this.creditos) {
+                        if (credito.getCuenta() == Integer.parseInt(tarjeta)) {
+                            existeCuenta = true;
+                            debito.quitarMonto(monto);
+                            int pinEncryptado = Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr)));
+                            Pagos pago = new Pagos(debito, (new PinTransaccional(pinEncryptado)));
+                            TarjetaDeCredito tarjetaDeCredito = new TarjetaDeCredito(pago, 1, monto, credito);
+                            
+                            Con.agregarPagoCredito(pago, tarjetaDeCredito);
+                            Funciones.actualizarSaldo(debito.getMonto()+" gs.");
+                        }
+                    }
+                }
+            }
+            
+            if (!existeCuenta) {
+                throw new IllegalArgumentException("No existe la cuenta de usuario insertada");
+            }
+            
+            JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
+            
+        } else {
+//            Funciones.MensajeDeAlerta(2, "Error", "Pin incorrecto");
+            throw new IllegalArgumentException("Pin incorrecto");
         }
-        
-        JOptionPane.showMessageDialog(null, "Pago efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
+    }
+
+    private void cargarCreditos() {
+        for (Credito credito : this.creditos) {
+            DeudaCombo.addItem(credito.getCuenta());
+        }
     }
 
 }

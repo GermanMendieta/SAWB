@@ -296,10 +296,7 @@ public class Transferenncia extends javax.swing.JDialog {
         /*
             Aqui deberia ir la inserccion en la base de datos
         */
-        if (User.validaPinTr(Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr))))) {
-            
-            
-            
+        if (User.validaPinTr(Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr))))) {    
             // TODO reporte
             
             Boolean existeCuenta = false;
