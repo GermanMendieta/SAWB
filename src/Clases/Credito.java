@@ -18,4 +18,4 @@ public class Credito extends Cuenta {
     public int getCuenta() {
         return super.id;
     }
-}
+    }

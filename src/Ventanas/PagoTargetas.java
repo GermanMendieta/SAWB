@@ -38,7 +38,7 @@ public class PagoTargetas extends javax.swing.JDialog {
             Configuramos la ventana  
          */
         this.setResizable(false);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.pack();
         this.setModal(true);
 
@@ -79,6 +79,11 @@ public class PagoTargetas extends javax.swing.JDialog {
         rSButtonMetro5 = new rojerusan.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setForeground(new java.awt.Color(102, 102, 102));
@@ -299,6 +304,10 @@ public class PagoTargetas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ConsultarDeudaActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Funciones.deseaSalir(this, Menu);
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      * @param Usuario
@@ -355,7 +364,17 @@ public class PagoTargetas extends javax.swing.JDialog {
                             TarjetaDeCredito tarjetaDeCredito = new TarjetaDeCredito(pago, 1, monto, credito);
                             
                             Con.agregarPagoCredito(pago, tarjetaDeCredito);
+                            /* se acutualiza el monto del menu */
                             Funciones.actualizarSaldo(debito.getMonto()+" gs.");
+                            /* se genera el ticket */
+                            Funciones.generarPdf(new String[]{
+                                        "Ticket de Pago de Targetas:",
+                                        "Nro de cuenta:", cuenta,
+                                        "Tarjeta a pagar:", tarjeta,
+                                        "Monto de pago:", Funciones.setMoneyFormat(monto + "") + " gs.",
+                                        "Saldo Restante:", Funciones.setMoneyFormat(debito.getMonto()+"") + " gs."
+                            
+                            });
                         }
                     }
                 }

@@ -6,7 +6,12 @@
 package Ventanas;
 
 import Clases.Cliente;
+import Clases.Credito;
+import Clases.Cuenta;
+import Clases.Debito;
 import Clases.Funciones;
+import Clases.TarjetaDeCredito;
+import Recursos.BaseDeDatos;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -20,19 +25,26 @@ public class ConsultaSaldo extends javax.swing.JDialog {
      * Creates new form ConsultaSaldo
      */
     Cliente User;
+    Debito[] Debitos;
+    BaseDeDatos Con;
     JFrame Menu;
-    public ConsultaSaldo(Cliente User, JFrame menu) {
+
+    public ConsultaSaldo(Cliente User, JFrame menu, BaseDeDatos con, Debito[] debitos) {
         /*
             Configuramos la ventana  
          */
         this.setResizable(false);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.pack();
         this.setModal(true);
 
         this.User = User;
         this.Menu = menu;
+        this.Debitos = debitos;
+        this.Con = con;
         initComponents();
+
+        CargarDatosDeCuenta();
     }
 
     /**
@@ -51,16 +63,21 @@ public class ConsultaSaldo extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         NroC = new javax.swing.JLabel();
-        IDC = new javax.swing.JLabel();
+        TIDC = new javax.swing.JLabel();
         SaldoC = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        DebitoLabel = new javax.swing.JLabel();
+        CreditoLabel = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         cancelar = new rojerusan.RSButtonMetro();
         rSButtonMetro1 = new rojerusan.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -89,10 +106,10 @@ public class ConsultaSaldo extends javax.swing.JDialog {
         NroC.setText("123");
         NroC.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        IDC.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        IDC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        IDC.setText("Armando Cecilio Casas Urbaneta");
-        IDC.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        TIDC.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        TIDC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        TIDC.setText("Armando Cecilio Casas Urbaneta");
+        TIDC.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         SaldoC.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         SaldoC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -103,15 +120,15 @@ public class ConsultaSaldo extends javax.swing.JDialog {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Debito:");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setText("400.000");
-        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        DebitoLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        DebitoLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        DebitoLabel.setText("400.000");
+        DebitoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel11.setText("20.000");
-        jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CreditoLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        CreditoLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        CreditoLabel.setText("20.000");
+        CreditoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -132,11 +149,11 @@ public class ConsultaSaldo extends javax.swing.JDialog {
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DebitoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SaldoC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(NroC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(IDC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(TIDC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                    .addComponent(CreditoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -149,19 +166,19 @@ public class ConsultaSaldo extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IDC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TIDC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SaldoC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DebitoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CreditoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -208,14 +225,27 @@ public class ConsultaSaldo extends javax.swing.JDialog {
 
     private void rSButtonMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro1ActionPerformed
         Funciones.MensajeDeAlerta(3, "Atencion", String.format("%s%s%s", "Impresion de ", "ticket", ""));
+        Funciones.generarPdf(new String[]{"\tResumen de cuenta",
+            "Numero de Cuenta: ", NroC.getText() ,
+            "Nombre:", TIDC.getText(),
+            "Saldo Total:", this.SaldoC.getText(),
+            "Targeta de Credito:" , this.CreditoLabel.getText(),
+            "Targeta de Debito:" , this.DebitoLabel.getText()
+        });
     }//GEN-LAST:event_rSButtonMetro1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Funciones.deseaSalir(this, Menu);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
      * @param Usuario
      * @param VentanaAnterior
+     * @param Con
+     * @param debitos
      */
-    public static void main(String args[], Cliente Usuario, JFrame VentanaAnterior) {
+    public static void main(String args[], Cliente Usuario, JFrame VentanaAnterior, BaseDeDatos Con, Debito[] debitos) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -240,27 +270,26 @@ public class ConsultaSaldo extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the form */
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultaSaldo(Usuario, VentanaAnterior).setVisible(true);
+                new ConsultaSaldo(Usuario, VentanaAnterior, Con, debitos).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel IDC;
+    private javax.swing.JLabel CreditoLabel;
+    private javax.swing.JLabel DebitoLabel;
     private javax.swing.JLabel NroC;
     private javax.swing.JLabel SaldoC;
+    private javax.swing.JLabel TIDC;
     private rojerusan.RSButtonMetro cancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private rojerusan.RSButtonMetro rSButtonMetro1;
@@ -277,6 +306,31 @@ public class ConsultaSaldo extends javax.swing.JDialog {
 
         JOptionPane.showMessageDialog(null, "Transferencia de dinero completa", "Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
+    }
+
+    private void CargarDatosDeCuenta() {
+        // cuenta
+        NroC.setText(Con.getCuentas(User)[0].getID() + "");
+        // titular
+        TIDC.setText(User.getNombre());
+        
+        // debito
+        int Debito = (Con.getCuentasDebitos(Con.getCuentas(User))[0].getMonto());
+        
+        DebitoLabel.setText(Funciones.setMoneyFormat(Debito + "") + " gs.");
+        // credito
+        Credito[] Credits = Con.getCuentasCreditos(Con.getCuentas(User));
+        TarjetaDeCredito[] targetas = Con.getTargetaCreditos(Credits);
+        int ultimoCredito = 0;
+        for (int i = 0; i < targetas.length; i++) {
+            ultimoCredito = targetas[i].getMonto();
+        }
+        CreditoLabel.setText(Funciones.setMoneyFormat(ultimoCredito + "") + " gs.");
+        
+        // total disponible en cuenta
+        int Monto = (Debito + ultimoCredito);
+        SaldoC.setText(Funciones.setMoneyFormat(Monto + "") + " gs.");
+        
     }
 
 }

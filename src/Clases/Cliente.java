@@ -1,6 +1,5 @@
 package Clases;
 
-import Recursos.BaseDeDatos;
 
 /**
  *
@@ -51,6 +50,13 @@ public class Cliente {
     
     public boolean validaPinTr(int pinTr) {
         return pinTrans.validarPin(pinTr);
+    }
+    
+    public String getId(){
+        return this.id + "";
+    }
+    public String getNombre(){
+        return this.nombre + "";
     }
     
 }

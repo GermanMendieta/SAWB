@@ -32,7 +32,7 @@ public class Deposito extends javax.swing.JDialog {
             Configuramos la ventana  
          */
         this.setResizable(false);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.pack();
         this.setModal(true);
 
@@ -65,6 +65,11 @@ public class Deposito extends javax.swing.JDialog {
         rSButtonMetro5 = new rojerusan.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setForeground(new java.awt.Color(102, 102, 102));
@@ -225,6 +230,10 @@ public class Deposito extends javax.swing.JDialog {
         Funciones.deseaSalir(this , Menu);
     }//GEN-LAST:event_rSButtonMetro5ActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Funciones.deseaSalir(this, Menu);
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      * @param Usuario
@@ -265,9 +274,6 @@ public class Deposito extends javax.swing.JDialog {
             Aqui deberia ir la inserccion en la base de datos
         */ 
         if (User.validaPinTr(Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr))))) {
-            if (monto > 25000000) {
-                throw new UnsupportedOperationException("Saldo insuficiente");
-            }
             
             for (Debito debito : this.debitos) {
                 if (debito.getCuenta() == Integer.parseInt(cuenta)) {
@@ -276,8 +282,11 @@ public class Deposito extends javax.swing.JDialog {
                 }
             }
             JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
-         
-            
+            Funciones.generarPdf(new String[]{"Ticket de Deposito",
+                                    "Cuenta:", cuenta,
+                                    "Monto:", Funciones.setMoneyFormat(monto + ""),
+                                    "Saldo Total:", Funciones.setMoneyFormat(debitos[0].getMonto() +"") + " gs."
+                });
             
             
         } else {

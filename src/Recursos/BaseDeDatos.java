@@ -29,7 +29,7 @@ public class BaseDeDatos {
             new Cuenta(100, Clientes[0]),
             new Cuenta(103, Clientes[1])
         };
-        
+
         this.Debitos = new Debito[]{
             new Debito(Cuentas[0], 1000000),
             new Debito(Cuentas[1], 3000000)
@@ -68,13 +68,13 @@ public class BaseDeDatos {
        |________________________________________________________________________________________|
      */
     public Cliente ValidarUser(String nombre, String pin) {
-        
+
         for (Cuenta Cuenta : Cuentas) {
             if (Cuenta.comparaCliente(nombre, pin)) {
                 return Cuenta.getCliente();
             }
         }
-        
+
         return null;
     }
 
@@ -85,18 +85,18 @@ public class BaseDeDatos {
                 respuesta.add(cuenta);
             }
         }
-        
+
         Cuenta[] cuentas = new Cuenta[respuesta.size()];
         for (int i = 0; i < cuentas.length; i++) {
             cuentas[i] = respuesta.get(i);
         }
-        
+
         return cuentas;
     }
-    
+
     public Debito[] getCuentasDebitos(Cuenta[] cuentas) {
         Debito[] respuesta = new Debito[cuentas.length];
-           
+
         int i = 0;
         for (Cuenta cuenta : cuentas) {
             for (Debito debito : Debitos) {
@@ -106,13 +106,13 @@ public class BaseDeDatos {
                 }
             }
         }
-        
+
         return respuesta;
     }
-    
+
     public Credito[] getCuentasCreditos(Cuenta[] cuentas) {
         Credito[] respuesta = new Credito[cuentas.length];
-           
+
         int i = 0;
         for (Cuenta cuenta : cuentas) {
             for (Credito credito : Creditos) {
@@ -122,29 +122,29 @@ public class BaseDeDatos {
                 }
             }
         }
-        
+
         return respuesta;
     }
-    
+
     public Debito getCuentaDebitoPorIDCuenta(int id) {
         for (Debito debito : Debitos) {
             if (debito.getCuenta() == id) {
                 return debito;
             }
         }
-        
+
         return null;
     }
-    
+
     public void agregarTransferencia(Transferencias transferencias) {
         Transferencias.add(transferencias);
     }
-    
+
     public void agregarPagoCredito(Pagos pago, TarjetaDeCredito tarjeta) {
         Pago.add(pago);
         PagoTargetas.add(tarjeta);
     }
-    
+
     public ArrayList getTransferencias() {
         return Transferencias;
     }
@@ -152,9 +152,26 @@ public class BaseDeDatos {
     public Servicio[] getServicios() {
         return Servicios;
     }
-    
+
     public void agregarPagoCredito(Pagos pago, PagoServicio pagoServicio) {
         Pago.add(pago);
         PagoServicio.add(pagoServicio);
+    }
+    
+    public TarjetaDeCredito[] getTargetaCreditos( Credito[] creditos){
+        ArrayList<TarjetaDeCredito> targetasCreditos = new ArrayList<>();
+        for (int i = 0; i < creditos.length; i++) {
+            for (TarjetaDeCredito PagoTargeta : this.PagoTargetas) {
+                if (PagoTargeta.getCuenCredito() == creditos[i]) {
+                    targetasCreditos.add(PagoTargeta);
+                }
+            }
+        }
+        
+        TarjetaDeCredito[] Targetas = new TarjetaDeCredito[targetasCreditos.size()];
+        for (int i = 0; i < targetasCreditos.size(); i++) {
+            Targetas[i] = targetasCreditos.get(i);
+        }
+        return Targetas;
     }
 }

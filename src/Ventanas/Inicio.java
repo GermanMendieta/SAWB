@@ -101,7 +101,6 @@ public class Inicio extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -492,11 +491,14 @@ public class Inicio extends javax.swing.JFrame {
 
         jMenu4.setText("Usuario");
 
+        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         jMenuItem8.setText("Cambiar de Cuenta");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem8);
-
-        jMenuItem9.setText("jMenuItem9");
-        jMenu4.add(jMenuItem9);
 
         jMenuBar1.add(jMenu4);
 
@@ -600,6 +602,7 @@ public class Inicio extends javax.swing.JFrame {
             Loging.dispose();
             cargarCuenta();
             Funciones.setLabelMenuSaldo(cuentaSaldo);
+            this.setVisible(true);
         } else {
             LoginError.setVisible(true);
         }
@@ -668,7 +671,10 @@ public class Inicio extends javax.swing.JFrame {
             Se abre la ventana de consulta de cuenta bancaria
          */
         this.setVisible(false);
-        Ventanas.ConsultaSaldo.main(null, Usuario, this);
+        
+        Cuenta[] cuentasCliente = Con.getCuentas(Usuario);
+        Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
+        Ventanas.ConsultaSaldo.main(null, Usuario, this, Con, debitosCliente);
     }//GEN-LAST:event_rSButtonMetro3ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -687,6 +693,11 @@ public class Inicio extends javax.swing.JFrame {
         
         Ventanas.PagoTargetas.main(null, Usuario, this, debitosCliente, creditosCliente, Con);
     }//GEN-LAST:event_rSButtonMetro4ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        this.setVisible(false);
+        logger();
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -756,7 +767,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -795,7 +805,7 @@ public class Inicio extends javax.swing.JFrame {
         // hace passVisible la ventana
         Loging.setVisible(true);
     }
-
+    
     private Cliente validarUser() {
         if (nom.getText().compareTo("") != 0 || id.getText().compareTo("") != 0) {
             return Con.ValidarUser(nom.getText(), encriptar.Encriptar(Integer.parseInt(id.getText())));
@@ -806,8 +816,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void cargarCuenta() {
         Debito[] Debitos = Con.getCuentasDebitos(Con.getCuentas(Usuario));
-        if (Debitos.length >= 1) {
-            cuentaSaldo.setText(Debitos[0].getMonto() + " gs.");
+        if (Debitos.length > 0) {
+            cuentaSaldo.setText(Funciones.setMoneyFormat(Debitos[0].getMonto() + "") + " gs.");
         }
     }
 

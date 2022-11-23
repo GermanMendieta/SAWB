@@ -24,4 +24,10 @@ public class TarjetaDeCredito extends Pagos {
         this.cuentaCredito = cuentaCredito;
     }
     
+    public Credito getCuenCredito(){
+        return cuentaCredito;
+    }
+    public int getMonto(){
+        return monto;
+    }
 }

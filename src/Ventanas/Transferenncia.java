@@ -34,7 +34,7 @@ public class Transferenncia extends javax.swing.JDialog {
             Configuramos la ventana  
          */
         this.setResizable(false);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.pack();
         this.setModal(true);
 
@@ -70,6 +70,11 @@ public class Transferenncia extends javax.swing.JDialog {
         CuentaEmisora = new rojerusan.RSMetroTextPlaceHolder();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -238,6 +243,10 @@ public class Transferenncia extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_CuentaEmisoraActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Funciones.deseaSalir(this, Menu);
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -313,6 +322,17 @@ public class Transferenncia extends javax.swing.JDialog {
                     Con.agregarTransferencia(transferencia);
                     /* se actualiza el menu */
                     Funciones.actualizarSaldo(debito.getMonto()+" gs.");
+                    /* se imprime el ticket */
+                    Funciones.generarPdf(new String[] {
+                            "Ticket de Transferencia",
+                            "Cuenta Emisora:", cuentaEmisoraID,
+                            "Cuenta Receptora:", cuentaReceptoraID,
+                            "Monto:", Funciones.setMoneyFormat(monto + "") + " gs.",
+                            "Saldo Restante:", Funciones.setMoneyFormat(debito.getMonto() + "") + " gs.",
+                            
+                    
+                    });
+                    
                 }
             }
             

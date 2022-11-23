@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class encriptar {
 
-    /*       ___________________________________
+    /*   ___________________________________
         |                                   |
         |       Encriptar mensaje           |
         |    se retorna el string del campo |
@@ -99,8 +99,6 @@ public class encriptar {
         });
     }
     
-    public static void main(String[] args) {
-        System.out.println(DesEncriptar(Encriptar(1234)));
-    }
+    
 
 }
