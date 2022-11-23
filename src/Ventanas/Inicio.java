@@ -593,7 +593,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void AccesUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccesUserActionPerformed
         // Verificamos el usuario y cerramos
-        if (validarUser()) {
+        this.Usuario = validarUser();
+        if (this.Usuario != null) {
             Loging.dispose();
             
             cargarCuenta();
@@ -631,7 +632,11 @@ public class Inicio extends javax.swing.JFrame {
             Abre la ventana para hacer deposito
          */
         this.setVisible(false);
-        Ventanas.Deposito.main(null, Usuario, this);
+        
+        Cuenta[] cuentasCliente = Con.getCuentas(Usuario);
+        Debito[] debitosCliente = Con.getCuentasDebitos(cuentasCliente);
+        
+        Ventanas.Deposito.main(null, Usuario, this, debitosCliente);
     }//GEN-LAST:event_rSButtonMetro1ActionPerformed
 
     private void rSButtonMetro6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro6ActionPerformed
@@ -778,12 +783,14 @@ public class Inicio extends javax.swing.JFrame {
         Loging.setVisible(true);
     }
 
-    private boolean validarUser() {
+    private Cliente validarUser() {
+        System.out.println(nom.getText());
+        System.out.println(id.getText());
         if (nom.getText().compareTo("") != 0 || id.getText().compareTo("") != 0) {
             return Con.ValidarUser(nom.getText(), encriptar.Encriptar(Integer.parseInt(id.getText())));
         }
         
-        return false;
+        return null;
     }
 
     private void cargarCuenta() {

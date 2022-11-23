@@ -9,12 +9,13 @@ import java.util.Objects;
  */
 class PinTransaccional implements Pin{
     // Clase pin transaccional
+    static int cantidad;
     Integer Id;
     Integer Pin;
 
-    PinTransaccional(int id) {
-        Id = id;
-        Pin = id;
+    PinTransaccional(int pin) {
+        Id = ++cantidad;
+        this.Pin = pin;
     }
     @Override
     public boolean validarID(Integer id) {

@@ -27,18 +27,16 @@ public class SimuladorDB {
         };
         this.Cuentas = new Cuenta[]{
             new Cuenta(100, Clientes[0]),
-            new Cuenta(101, Clientes[0]),
             new Cuenta(103, Clientes[1])
+        };
+        
+        this.Debitos = new Debito[]{
+            new Debito(Cuentas[0], 1000000),
+            new Debito(Cuentas[1], 3000000)
         };
         this.Creditos = new Credito[]{
             new Credito(Cuentas[0], 1000000),
-            new Credito(Cuentas[1], 0),
-            new Credito(Cuentas[2], 3000000)
-        };
-        this.Debitos = new Debito[]{
-            new Debito(Cuentas[0], 0),
-            new Debito(Cuentas[1], 0),
-            new Debito(Cuentas[2], 0)
+            new Credito(Cuentas[1], 3000000)
         };
         this.Servicios = new Servicio[]{
             new Servicio(1, "ANDE"),
@@ -69,14 +67,46 @@ public class SimuladorDB {
        |    Llamamos a la funcion que se enecarga de validar al usuario en la base de datos     |
        |________________________________________________________________________________________|
      */
-    public boolean ValidarUser(String nombre, String pin) {
+    public Cliente ValidarUser(String nombre, String pin) {
         
         for (Cuenta Cuenta : Cuentas) {
             if (Cuenta.comparaCliente(nombre, pin)) {
-                return true;
+                return Cuenta.getCliente();
             }
         }
-        return false;
+        
+        return null;
     }
 
+    public Cuenta[] getCuentas(Cliente cliente) {
+        ArrayList<Cuenta> respuesta = new ArrayList<>();
+        for (Cuenta cuenta : Cuentas) {
+            if (cuenta.getCliente().equals(cliente)) {
+                respuesta.add(cuenta);
+            }
+        }
+        
+        Cuenta[] cuentas = new Cuenta[respuesta.size()];
+        for (int i = 0; i < cuentas.length; i++) {
+            cuentas[i] = respuesta.get(i);
+        }
+        
+        return cuentas;
+    }
+    
+    public Debito[] getCuentasDebitos(Cuenta[] cuentas) {
+        Debito[] respuesta = new Debito[cuentas.length];
+           
+        int i = 0;
+        for (Cuenta cuenta : cuentas) {
+            for (Debito debito : Debitos) {
+                if (debito.getCuenta() == cuenta.getID()) {
+                    respuesta[i++] = debito;
+                    break;
+                }
+            }
+        }
+        
+        return respuesta;
+    }
 }

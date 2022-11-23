@@ -10,12 +10,13 @@ class PinCuenta implements Pin {
     /*
         Clase pin de cuenta 
     */
+    static int cantidad;
     Integer Id;
     Integer Pin;
     
-    public PinCuenta(int id) {
-        Id = id;
-        Pin = id;
+    public PinCuenta(int pin) {
+        Id = ++cantidad;
+        Pin = pin;
     }
 
     @Override

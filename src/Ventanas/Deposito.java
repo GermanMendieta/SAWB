@@ -8,6 +8,8 @@ package Ventanas;
 import Clases.Cliente;
 import Clases.Funciones;
 import Clases.Validar;
+import Clases.Debito;
+import Clases.encriptar;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -22,7 +24,9 @@ public class Deposito extends javax.swing.JDialog {
      */
     Cliente User;
     JFrame Menu;
-    public Deposito(Cliente User, JFrame menu) {
+    Debito[] debitos;
+    
+    public Deposito(Cliente User, JFrame menu, Debito[] debitos) {
         /*
             Configuramos la ventana  
          */
@@ -33,6 +37,7 @@ public class Deposito extends javax.swing.JDialog {
 
         this.User = User;
         this.Menu = menu;
+        this.debitos = debitos;
         
         initComponents();
     }
@@ -204,9 +209,11 @@ public class Deposito extends javax.swing.JDialog {
                 Funciones.salir(this, Menu);
             } catch (UnsupportedOperationException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Atencion", JOptionPane.OK_OPTION);
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(null, "Pin incorrecto", "Error", JOptionPane.OK_OPTION);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Hubo un error inesperado", "Atencion", JOptionPane.OK_OPTION);
-            } 
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente ","Atencion", JOptionPane.OK_OPTION);
         }
@@ -222,12 +229,12 @@ public class Deposito extends javax.swing.JDialog {
      * @param Usuario
      * @param VentanaAnterior
      */
-    public static void main(String args[], Cliente Usuario, Inicio VentanaAnterior) {
+    public static void main(String args[], Cliente Usuario, Inicio VentanaAnterior, Debito[] debitos) {
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Deposito(Usuario, VentanaAnterior).setVisible(true);
+                new Deposito(Usuario, VentanaAnterior, debitos).setVisible(true);
             }
         });
     }
@@ -253,12 +260,28 @@ public class Deposito extends javax.swing.JDialog {
     private void EfectivisarDeposito(String cuenta, int monto, String pinTr) throws Exception {
         /*
             Aqui deberia ir la inserccion en la base de datos
-        */
-        if (monto > 25000000) {
-            throw new UnsupportedOperationException("Saldo insuficiente");
+        */ 
+        if (User.validaPinTr(Integer.parseInt(encriptar.Encriptar(Integer.parseInt(pinTr))))) {
+            if (monto > 25000000) {
+                throw new UnsupportedOperationException("Saldo insuficiente");
+            }
+            
+            JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
+//            Funciones.MensajeDeAlerta(3, "Atencion", String.format("%s%s%s", cuenta, monto, ""));
+            // TODO reporte
+            
+            for (Debito debito : this.debitos) {
+                if (debito.getCuenta() == Integer.parseInt(cuenta)) {
+                    debito.cargarMonto(monto);
+                    System.out.println(debito.getMonto());
+                }
+            }
+            
+            
+        } else {
+//            Funciones.MensajeDeAlerta(2, "Error", "Pin incorrecto");
+            throw new IllegalArgumentException("Pin incorrecto");
         }
-        Funciones.MensajeDeAlerta(3, "Atencion", String.format("%s%s%s", cuenta, monto, ""));
-        JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
         
     }
 
