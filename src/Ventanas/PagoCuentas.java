@@ -38,9 +38,12 @@ public class PagoCuentas extends javax.swing.JDialog {
     Servicio ServicioSelected;
 
     public PagoCuentas(Cliente User, JFrame menu, BaseDeDatos Con, Debito[] Debitos) {
-        /*
-            Configuramos la ventana  
-         */
+    /*
+            ________________________________________________________________
+           |                                                                |
+           |    Configuramos la ventana                                     |
+           |________________________________________________________________|
+             */
         this.setResizable(false);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.pack();
@@ -54,6 +57,8 @@ public class PagoCuentas extends javax.swing.JDialog {
         initComponents();
 
         cargarServicios();
+        
+        PinTr.setEchoChar('\u2022');
     }
 
     /**
@@ -71,7 +76,6 @@ public class PagoCuentas extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         Cuenta = new rojerusan.RSMetroTextPlaceHolder();
         Monto = new rojerusan.RSMetroTextPlaceHolder();
-        PinTr = new rojerusan.RSMetroTextPlaceHolder();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -80,6 +84,8 @@ public class PagoCuentas extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         aPagar = new javax.swing.JLabel();
         ConsultarDeuda = new rojerusan.RSButtonMetro();
+        PinTr = new rojerusan.RSPasswordTextPlaceHolder();
+        ver3 = new rojerusan.RSButtonMetro();
         rSButtonMetro5 = new rojerusan.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -123,13 +129,6 @@ public class PagoCuentas extends javax.swing.JDialog {
         Monto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MontoActionPerformed(evt);
-            }
-        });
-
-        PinTr.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        PinTr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PinTrActionPerformed(evt);
             }
         });
 
@@ -187,6 +186,15 @@ public class PagoCuentas extends javax.swing.JDialog {
             }
         });
 
+        PinTr.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        ver3.setText("...");
+        ver3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ver3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -200,13 +208,17 @@ public class PagoCuentas extends javax.swing.JDialog {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ConsultarDeuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Cuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                    .addComponent(DeudaCombo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PinTr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Monto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(aPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(ConsultarDeuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Cuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                        .addComponent(DeudaCombo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Monto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(aPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(PinTr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ver3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -231,9 +243,11 @@ public class PagoCuentas extends javax.swing.JDialog {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Monto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PinTr, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ver3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PinTr, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -268,10 +282,6 @@ public class PagoCuentas extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_CuentaActionPerformed
 
-    private void PinTrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PinTrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PinTrActionPerformed
-
     private void DepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositarActionPerformed
         boolean DatosValidos = Validar.camposVacios(new String[]{Cuenta.getText(), Monto.getText(), PinTr.getText()}) && DeudaCombo.getSelectedIndex() > 0;
         if (DatosValidos) {
@@ -301,6 +311,9 @@ public class PagoCuentas extends javax.swing.JDialog {
     }//GEN-LAST:event_DeudaComboActionPerformed
 
     private void ConsultarDeudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarDeudaActionPerformed
+        /*
+            Se genera el saldo de la deuda
+        */
         if (DeudaCombo.getSelectedIndex() > 0) {
             aPagar.setText(((DeudaCombo.getSelectedIndex() * 3 + 10) * 23000) + "  gs.");
             ServicioSelected = ServicioAPagar[DeudaCombo.getSelectedIndex() - 1];
@@ -313,6 +326,15 @@ public class PagoCuentas extends javax.swing.JDialog {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Funciones.deseaSalir(this, Menu);
     }//GEN-LAST:event_formWindowClosing
+
+    /* metodo que oculta y muestra el pin de transaccion */
+    private void ver3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ver3ActionPerformed
+        if (PinTr.echoCharIsSet() == true) {
+            PinTr.setEchoChar((char) 0);
+        } else {
+            PinTr.setEchoChar('\u2022');
+        }
+    }//GEN-LAST:event_ver3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,7 +358,7 @@ public class PagoCuentas extends javax.swing.JDialog {
     private rojerusan.RSButtonMetro Depositar;
     private rojerusan.RSComboMetro DeudaCombo;
     private rojerusan.RSMetroTextPlaceHolder Monto;
-    private rojerusan.RSMetroTextPlaceHolder PinTr;
+    private rojerusan.RSPasswordTextPlaceHolder PinTr;
     private javax.swing.JLabel aPagar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -347,6 +369,7 @@ public class PagoCuentas extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private rojerusan.RSButtonMetro rSButtonMetro5;
+    private rojerusan.RSButtonMetro ver3;
     // End of variables declaration//GEN-END:variables
 
     // se debe efectivisar el pago
@@ -384,6 +407,7 @@ public class PagoCuentas extends javax.swing.JDialog {
                 }
             }
 
+            /* se lanzan exepciones segun cada error posible */
             if (!existeCuenta) {
                 throw new IllegalArgumentException("No existe la cuenta de usuario insertada");
             }

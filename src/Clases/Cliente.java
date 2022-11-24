@@ -39,7 +39,7 @@ public class Cliente {
             return false;
         }
     }
-
+    /* validaciones generales */
     public boolean validaPinC(PinCuenta pinC) {
         return pinCuenta.validarPin(pinC.Pin);
     }
@@ -52,6 +52,7 @@ public class Cliente {
         return pinTrans.validarPin(pinTr);
     }
     
+    /* Getters */
     public String getId(){
         return this.id + "";
     }

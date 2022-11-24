@@ -9,7 +9,7 @@ public class TarjetaDeCredito extends Pagos {
     int Id;
     int monto;
     Credito cuentaCredito;
-
+    /* constructores */
     public TarjetaDeCredito(int Id, int monto, Credito cuentaCredito, int id, Debito cuentaDebito, PinTransaccional pin) {
         super(id, cuentaDebito, pin);
         this.Id = Id;
@@ -24,6 +24,7 @@ public class TarjetaDeCredito extends Pagos {
         this.cuentaCredito = cuentaCredito;
     }
     
+    /* Getters */
     public Credito getCuenCredito(){
         return cuentaCredito;
     }

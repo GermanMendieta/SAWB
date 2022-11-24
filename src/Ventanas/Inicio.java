@@ -715,6 +715,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_PagoTarjetButtomActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        /* abrimos el login y ocultamos el menu*/
         this.setVisible(false);
         logger();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
@@ -839,6 +840,7 @@ public class Inicio extends javax.swing.JFrame {
         Loging.setVisible(true);
     }
     
+    /* Validamos que el usuario exista y sean valdas la credenciales */
     private Cliente validarUser() {
         if (nom.getText().compareTo("") != 0 || id.getText().compareTo("") != 0) {
             return Con.ValidarUser(nom.getText(), encriptar.Encriptar(Integer.parseInt(id.getText())));
@@ -847,6 +849,7 @@ public class Inicio extends javax.swing.JFrame {
         return null;
     }
 
+    /* Cargamos la informacion de la cuenta */
     private void cargarCuenta() {
         Debito[] Debitos = Con.getCuentasDebitos(Con.getCuentas(Usuario));
         if (Debitos.length > 0) {

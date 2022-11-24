@@ -6,7 +6,7 @@ package Clases;
  */
 public class Credito extends Cuenta {
     int linea; 
-
+    
     public Credito(int id, Cliente cliente, int linea) {
         super(id, cliente);
         this.linea = linea;
@@ -18,4 +18,4 @@ public class Credito extends Cuenta {
     public int getCuenta() {
         return super.id;
     }
-    }
+}

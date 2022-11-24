@@ -35,7 +35,10 @@ public class PagoTargetas extends javax.swing.JDialog {
     
     public PagoTargetas(Cliente User, JFrame Menu, Debito[] debitos, Credito[] creditos, BaseDeDatos Con) {
         /*
-            Configuramos la ventana  
+        ________________________________________
+       |                                        |
+       |    configuracion de la ventana         |
+       |________________________________________|
          */
         this.setResizable(false);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -49,6 +52,7 @@ public class PagoTargetas extends javax.swing.JDialog {
         this.Con = Con;
         
         initComponents();
+        PinTr.setEchoChar('\u2022');
         cargarCreditos();
     }
 
@@ -67,7 +71,6 @@ public class PagoTargetas extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         Cuenta = new rojerusan.RSMetroTextPlaceHolder();
         Monto = new rojerusan.RSMetroTextPlaceHolder();
-        PinTr = new rojerusan.RSMetroTextPlaceHolder();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -76,6 +79,8 @@ public class PagoTargetas extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         aPagar = new javax.swing.JLabel();
         ConsultarDeuda = new rojerusan.RSButtonMetro();
+        PinTr = new rojerusan.RSPasswordTextPlaceHolder();
+        ver3 = new rojerusan.RSButtonMetro();
         rSButtonMetro5 = new rojerusan.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -122,13 +127,6 @@ public class PagoTargetas extends javax.swing.JDialog {
             }
         });
 
-        PinTr.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        PinTr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PinTrActionPerformed(evt);
-            }
-        });
-
         jLabel2.setBackground(new java.awt.Color(51, 51, 51));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -145,7 +143,7 @@ public class PagoTargetas extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Targeta a pagar");
+        jLabel4.setText("Tarjeta a pagar");
 
         jLabel5.setBackground(new java.awt.Color(51, 51, 51));
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -183,6 +181,15 @@ public class PagoTargetas extends javax.swing.JDialog {
             }
         });
 
+        PinTr.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        ver3.setText("...");
+        ver3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ver3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -195,14 +202,18 @@ public class PagoTargetas extends javax.swing.JDialog {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(65, 65, 65)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ConsultarDeuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Cuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                     .addComponent(DeudaCombo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PinTr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Monto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(aPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(aPagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(PinTr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ver3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -227,10 +238,12 @@ public class PagoTargetas extends javax.swing.JDialog {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Monto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PinTr, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ver3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PinTr, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 740, 430));
@@ -264,14 +277,16 @@ public class PagoTargetas extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_CuentaActionPerformed
 
-    private void PinTrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PinTrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PinTrActionPerformed
-
     private void DepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositarActionPerformed
         boolean DatosValidos = Validar.camposVacios(new String[]{Cuenta.getText(), Monto.getText(), PinTr.getText()}) && DeudaCombo.getSelectedIndex() > 0;
         if (DatosValidos) {
             try {
+                /*
+                ____________________________________________________________________________________
+               |                                                                                    |
+               |    se efectiviza el deposito y segun las validaciones se lanzan exepciones         |
+               |____________________________________________________________________________________|
+                 */
                 EfectivisarDeposito(Cuenta.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText(), DeudaCombo.getSelectedItem().toString());
                 Funciones.salir(this, Menu);
             } catch (IllegalArgumentException ex) {
@@ -297,7 +312,8 @@ public class PagoTargetas extends javax.swing.JDialog {
     private void DeudaComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeudaComboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DeudaComboActionPerformed
-
+    
+    /* se carga la deuda del usuario */
     private void ConsultarDeudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarDeudaActionPerformed
         if (DeudaCombo.getSelectedIndex() > 0) {
             aPagar.setText(((DeudaCombo.getSelectedIndex()*3 + 10)*10000) + "  gs.");
@@ -307,6 +323,15 @@ public class PagoTargetas extends javax.swing.JDialog {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Funciones.deseaSalir(this, Menu);
     }//GEN-LAST:event_formWindowClosing
+
+    /* se esconde y se oculta el pin de transaccion */
+    private void ver3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ver3ActionPerformed
+        if (PinTr.echoCharIsSet() == true) {
+            PinTr.setEchoChar((char) 0);
+        } else {
+            PinTr.setEchoChar('\u2022');
+        }
+    }//GEN-LAST:event_ver3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,7 +353,7 @@ public class PagoTargetas extends javax.swing.JDialog {
     private rojerusan.RSButtonMetro Depositar;
     private rojerusan.RSComboMetro DeudaCombo;
     private rojerusan.RSMetroTextPlaceHolder Monto;
-    private rojerusan.RSMetroTextPlaceHolder PinTr;
+    private rojerusan.RSPasswordTextPlaceHolder PinTr;
     private javax.swing.JLabel aPagar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -339,6 +364,7 @@ public class PagoTargetas extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private rojerusan.RSButtonMetro rSButtonMetro5;
+    private rojerusan.RSButtonMetro ver3;
     // End of variables declaration//GEN-END:variables
 
     
@@ -380,6 +406,7 @@ public class PagoTargetas extends javax.swing.JDialog {
                 }
             }
             
+            /* Se lanzan exepciones segun los errores encontrados*/
             if (!existeCuenta) {
                 throw new IllegalArgumentException("No existe la cuenta de usuario insertada");
             }
@@ -392,6 +419,7 @@ public class PagoTargetas extends javax.swing.JDialog {
         }
     }
 
+    /* se carga los creditos que se deben pagar en el combobox*/
     private void cargarCreditos() {
         for (Credito credito : this.creditos) {
             DeudaCombo.addItem(credito.getCuenta());

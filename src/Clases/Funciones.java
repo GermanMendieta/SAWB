@@ -43,7 +43,8 @@ public class Funciones {
     public static void setLabelMenuSaldo(JLabel saldoMenu) {
         Funciones.saldoMenu = saldoMenu;
     }
-
+    
+    /* actualiza el saldo del menu principal del sistema */
     public static void actualizarSaldo(String datos) {
         if (Funciones.saldoMenu != null) {
             Funciones.saldoMenu.setText(Funciones.setMoneyFormat(datos.split(" ")[0]) + "gs.");
@@ -151,6 +152,12 @@ public class Funciones {
         }
     }
 
+    /*
+    ________________________________________________________________________
+   |                                                                        |
+   |    con este Metodo se genera un pdf, segun el array de String dado     |
+   |________________________________________________________________________|
+     */
     public static void generarPdf(String[] args) {
         String atrozTabs = "..........................................................................";
         Document documento = new Document();
@@ -163,6 +170,8 @@ public class Funciones {
 //            // Se asocia el documento al OutputStream y se indica que el espaciado entre
             PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(15);
 //            // lineas sera de 15. Esta llamada debe hacerse antes de abrir el documento
+
+            /* se preparan estilos para los titulos y los textos */
             documento.open();
             Font titulo = new Font();
             titulo.setSize(26);
@@ -170,7 +179,8 @@ public class Funciones {
             Font Texto = new Font();
             Texto.setSize(16);
             Texto.setColor( 0, 0, 0);
-            
+             
+            /* se generan los pdf */
             documento.add(new Chunk().setBackground(BaseColor.BLUE));
             documento.add( new Paragraph( "\t\t\t" +args[0], titulo));
             documento.add( new Paragraph( "\t\t\t" +args[1], titulo));

@@ -7,7 +7,6 @@ package Ventanas;
 
 import Clases.Cliente;
 import Clases.Credito;
-import Clases.Cuenta;
 import Clases.Debito;
 import Clases.Funciones;
 import Clases.TarjetaDeCredito;
@@ -31,7 +30,10 @@ public class ConsultaSaldo extends javax.swing.JDialog {
 
     public ConsultaSaldo(Cliente User, JFrame menu, BaseDeDatos con, Debito[] debitos) {
         /*
-            Configuramos la ventana  
+        ________________________________________________
+       |                                                |
+       |    Configuracion de la ventana de inicio       |
+       |________________________________________________|
          */
         this.setResizable(false);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -223,14 +225,20 @@ public class ConsultaSaldo extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 
+    /*
+     ___________________________________________________________________________________
+    |                                                                                   |
+    |    Se prepara y se llama a la funcion que se encarga de generar un ticket         |
+    |___________________________________________________________________________________|
+      */
     private void rSButtonMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro1ActionPerformed
         Funciones.MensajeDeAlerta(3, "Atencion", String.format("%s%s%s", "Impresion de ", "ticket", ""));
         Funciones.generarPdf(new String[]{"\tResumen de cuenta",
             "Numero de Cuenta: ", NroC.getText() ,
             "Nombre:", TIDC.getText(),
             "Saldo Total:", this.SaldoC.getText(),
-            "Targeta de Credito:" , this.CreditoLabel.getText(),
-            "Targeta de Debito:" , this.DebitoLabel.getText()
+            "Tarjeta de Credito:" , this.CreditoLabel.getText(),
+            "Tarjeta de Debito:" , this.DebitoLabel.getText()
         });
     }//GEN-LAST:event_rSButtonMetro1ActionPerformed
 

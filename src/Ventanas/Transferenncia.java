@@ -31,7 +31,10 @@ public class Transferenncia extends javax.swing.JDialog {
 
     public Transferenncia(Cliente User, JFrame menu, Debito[] debitosCliente, BaseDeDatos Con) {
         /*
-            Configuramos la ventana  
+        ___________________________________________________________________________________
+       |                                                                                   |
+       |    Configuramos la ventana antes que se haga visible                              |
+       |___________________________________________________________________________________|
          */
         this.setResizable(false);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -44,6 +47,7 @@ public class Transferenncia extends javax.swing.JDialog {
         this.Con = Con;
         
         initComponents();
+        PinTr.setEchoChar('\u2022');
     }
 
     /**
@@ -61,10 +65,11 @@ public class Transferenncia extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         CuentaReceptora = new rojerusan.RSMetroTextPlaceHolder();
         Monto = new rojerusan.RSMetroTextPlaceHolder();
-        PinTr = new rojerusan.RSMetroTextPlaceHolder();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        PinTr = new rojerusan.RSPasswordTextPlaceHolder();
+        ver3 = new rojerusan.RSButtonMetro();
         cancelar = new rojerusan.RSButtonMetro();
         jLabel5 = new javax.swing.JLabel();
         CuentaEmisora = new rojerusan.RSMetroTextPlaceHolder();
@@ -110,12 +115,6 @@ public class Transferenncia extends javax.swing.JDialog {
             }
         });
 
-        PinTr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PinTrActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Cuenta Destino :");
@@ -128,6 +127,15 @@ public class Transferenncia extends javax.swing.JDialog {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Pin de transaccion:");
 
+        PinTr.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        ver3.setText("...");
+        ver3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ver3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -139,10 +147,14 @@ public class Transferenncia extends javax.swing.JDialog {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(PinTr, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-                    .addComponent(Monto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CuentaReceptora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(PinTr, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ver3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(Monto, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                        .addComponent(CuentaReceptora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -156,11 +168,12 @@ public class Transferenncia extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Monto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(PinTr, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(ver3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(PinTr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 680, 270));
@@ -206,10 +219,6 @@ public class Transferenncia extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_CuentaReceptoraActionPerformed
 
-    private void PinTrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PinTrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PinTrActionPerformed
-
     private void MontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MontoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MontoActionPerformed
@@ -221,6 +230,12 @@ public class Transferenncia extends javax.swing.JDialog {
         boolean DatosValidos = Validar.camposVacios(new String[]{CuentaReceptora.getText(), Monto.getText(), PinTr.getText()});
         if (DatosValidos) {
             try {
+                /*
+                ____________________________________________________________________________________
+               |                                                                                    |
+               |    se efectiviza la transferencia y segun las validaciones se lanzan exepciones    |
+               |____________________________________________________________________________________|
+                 */
                 EfectivisarTransferencia(CuentaEmisora.getText(), CuentaReceptora.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText());
                 Funciones.salir(this, Menu);
             } catch (IllegalArgumentException ex) {
@@ -246,6 +261,14 @@ public class Transferenncia extends javax.swing.JDialog {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Funciones.deseaSalir(this, Menu);
     }//GEN-LAST:event_formWindowClosing
+    /* metodo para ocultar y mostrar el pin */
+    private void ver3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ver3ActionPerformed
+        if (PinTr.echoCharIsSet() == true) {
+            PinTr.setEchoChar((char) 0);
+        } else {
+            PinTr.setEchoChar('\u2022');
+        }
+    }//GEN-LAST:event_ver3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,7 +310,7 @@ public class Transferenncia extends javax.swing.JDialog {
     private rojerusan.RSMetroTextPlaceHolder CuentaEmisora;
     private rojerusan.RSMetroTextPlaceHolder CuentaReceptora;
     private rojerusan.RSMetroTextPlaceHolder Monto;
-    private rojerusan.RSMetroTextPlaceHolder PinTr;
+    private rojerusan.RSPasswordTextPlaceHolder PinTr;
     private rojerusan.RSButtonMetro Transferir;
     private rojerusan.RSButtonMetro cancelar;
     private javax.swing.JLabel jLabel1;
@@ -297,6 +320,10 @@ public class Transferenncia extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private rojerusan.RSButtonMetro ver;
+    private rojerusan.RSButtonMetro ver1;
+    private rojerusan.RSButtonMetro ver2;
+    private rojerusan.RSButtonMetro ver3;
     // End of variables declaration//GEN-END:variables
 
     
@@ -310,7 +337,7 @@ public class Transferenncia extends javax.swing.JDialog {
             
             Boolean existeCuenta = false;
             for (Debito debito : this.debitos) {
-                if (debito.getCuenta() == Integer.parseInt(cuentaEmisoraID)) {
+                if (debito.getCuenta() == Integer.parseInt(cuentaEmisoraID) && debito.getCuenta() != Integer.parseInt(cuentaReceptoraID) ) {
                     existeCuenta = true;
                     Debito cuentaReceptora = Con.getCuentaDebitoPorIDCuenta(Integer.parseInt(cuentaReceptoraID));
                     

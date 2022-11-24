@@ -31,7 +31,10 @@ public class Deposito extends javax.swing.JDialog {
     BaseDeDatos Com;
     public Deposito(Cliente User, JFrame menu, Debito[] debitos, BaseDeDatos com, JLabel SaldoLabel ){
         /*
-            Configuramos la ventana  
+        ________________________________________
+       |                                        |
+       |    Configuracion de la ventana         |
+       |________________________________________|
          */
         this.setResizable(false);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -44,6 +47,8 @@ public class Deposito extends javax.swing.JDialog {
         this.Com = com;
         this.Saldo = SaldoLabel;
         initComponents();
+        
+        PinTr.setEchoChar('\u2022');
     }
 
     /**
@@ -61,10 +66,11 @@ public class Deposito extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         Cuenta = new rojerusan.RSMetroTextPlaceHolder();
         Monto = new rojerusan.RSMetroTextPlaceHolder();
-        PinTr = new rojerusan.RSMetroTextPlaceHolder();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        ver = new rojerusan.RSButtonMetro();
+        PinTr = new rojerusan.RSPasswordTextPlaceHolder();
         rSButtonMetro5 = new rojerusan.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -111,13 +117,6 @@ public class Deposito extends javax.swing.JDialog {
             }
         });
 
-        PinTr.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        PinTr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PinTrActionPerformed(evt);
-            }
-        });
-
         jLabel2.setBackground(new java.awt.Color(51, 51, 51));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -136,6 +135,15 @@ public class Deposito extends javax.swing.JDialog {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Pin de transaccion:");
 
+        ver.setText("...");
+        ver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verActionPerformed(evt);
+            }
+        });
+
+        PinTr.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -146,11 +154,14 @@ public class Deposito extends javax.swing.JDialog {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PinTr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Monto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Cuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Cuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(PinTr, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ver, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -164,11 +175,13 @@ public class Deposito extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Monto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(PinTr, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PinTr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ver, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 560, 250));
@@ -202,10 +215,6 @@ public class Deposito extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_CuentaActionPerformed
 
-    private void PinTrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PinTrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PinTrActionPerformed
-
     private void MontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MontoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MontoActionPerformed
@@ -214,6 +223,12 @@ public class Deposito extends javax.swing.JDialog {
         boolean DatosValidos = Validar.camposVacios(new String[]{Cuenta.getText(), Monto.getText(), PinTr.getText()});
         if (DatosValidos) {
             try {
+                /*
+                ____________________________________________________________________________________
+               |                                                                                    |
+               |    se efectiviza el deposito y segun las validaciones se lanzan exepciones         |
+               |____________________________________________________________________________________|
+                 */
                 EfectivisarDeposito(Cuenta.getText(), Integer.parseInt( Monto.getText()) , PinTr.getText());
                 Funciones.salir(this, Menu);
             } catch (UnsupportedOperationException e) {
@@ -237,6 +252,15 @@ public class Deposito extends javax.swing.JDialog {
         Funciones.deseaSalir(this, Menu);
     }//GEN-LAST:event_formWindowClosing
 
+    /* Se ocultan y se muestran el pin de transaccion */
+    private void verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verActionPerformed
+        if (PinTr.echoCharIsSet() == true) {
+            PinTr.setEchoChar((char) 0);
+        } else {
+            PinTr.setEchoChar('\u2022');
+        }
+    }//GEN-LAST:event_verActionPerformed
+
     /**
      * @param args the command line arguments
      * @param Usuario
@@ -258,7 +282,7 @@ public class Deposito extends javax.swing.JDialog {
     private rojerusan.RSMetroTextPlaceHolder Cuenta;
     private rojerusan.RSButtonMetro Depositar;
     private rojerusan.RSMetroTextPlaceHolder Monto;
-    private rojerusan.RSMetroTextPlaceHolder PinTr;
+    private rojerusan.RSPasswordTextPlaceHolder PinTr;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -266,6 +290,7 @@ public class Deposito extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private rojerusan.RSButtonMetro rSButtonMetro5;
+    private rojerusan.RSButtonMetro ver;
     // End of variables declaration//GEN-END:variables
 
     
@@ -286,15 +311,17 @@ public class Deposito extends javax.swing.JDialog {
                     throw new IllegalArgumentException("Error en inserccion de campos");
                 }
             }
-            JOptionPane.showMessageDialog(null, "Deposito efectivisado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
+            /* Se genera el ticket */
+            JOptionPane.showMessageDialog(null, "Deposito efectivizado sin problemas ","Operacion Exitosa", JOptionPane.INFORMATION_MESSAGE );
+            
             Funciones.generarPdf(new String[]{"Ticket de Deposito",
                                     "Cuenta:", cuenta,
                                     "Monto:", Funciones.setMoneyFormat(monto + ""),
                                     "Saldo Total:", Funciones.setMoneyFormat(debitos[0].getMonto() +"") + " gs."
                 });
             
-            
         } else {
+            /* se lanzan exepcion de pin */
             throw new IllegalArgumentException("Pin incorrecto");
         }
         
